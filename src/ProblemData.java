@@ -1,10 +1,10 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FileReader {
+public class ProblemData {
+
 
     private int numVehicles;
     private int numDepots;
@@ -15,7 +15,7 @@ public class FileReader {
     private ArrayList<List<Integer>> depotData = new ArrayList<>();
 
 
-    public FileReader() {}
+    public ProblemData() {}
 
     public void readFile(String path){
         try {
@@ -54,31 +54,37 @@ public class FileReader {
 
                 this.depotData.add(depotInt.subList(0,3));
             }
-
-            System.out.println(this.numVehicles);
-
-            System.out.println(this.numCustomers);
-
-            System.out.println(this.numDepots);
-
-            System.out.println(this.maxDurations);
-
-            System.out.println(this.maxLoads);
-
-            System.out.println(this.customerData);
-
-            System.out.println(this.depotData);
-
-
-
-
         }
-        catch (Exception e){}
+        catch (Exception e){throw new IllegalStateException("File format not correct");}
     }
 
-    public static void main(String[] args){
-        FileReader fr = new FileReader();
-        fr.readFile("input/p22");
-
+    public int getNumVehicles() {
+        return numVehicles;
     }
+
+    public int getNumDepots() {
+        return numDepots;
+    }
+
+    public int getNumCustomers() {
+        return numCustomers;
+    }
+
+    public ArrayList<Integer> getMaxDurations() {
+        return maxDurations;
+    }
+
+    public ArrayList<Integer> getMaxLoads() {
+        return maxLoads;
+    }
+
+    public ArrayList<List<Integer>> getCustomerData() {
+        return customerData;
+    }
+
+    public ArrayList<List<Integer>> getDepotData() {
+        return depotData;
+    }
+
+
 }
