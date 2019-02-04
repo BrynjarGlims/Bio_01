@@ -1,5 +1,5 @@
 import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 
 import java.lang.reflect.Array;
@@ -31,7 +31,7 @@ public class GraphVisualization {
             "rgb(247,156,212)"};
 
     public GraphVisualization() {
-        graph = new SingleGraph("Network");
+        graph = new MultiGraph("Network");
 
         graph.addAttribute("ui.stylesheet", STYLESHEET);
 
