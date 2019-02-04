@@ -78,7 +78,7 @@ public class FileReader {
 
     public static void main(String[] args){
         FileReader fr = new FileReader();
-        fr.readFile("input/p12");
+        fr.readFile("input/p22");
 
     }
 }
