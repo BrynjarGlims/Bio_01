@@ -1,0 +1,11 @@
+graph {
+    fill-color: #dddddd;
+}
+
+node {
+    size: 10px;
+}
+
+node.depot {
+    fill-color: blue;
+}
