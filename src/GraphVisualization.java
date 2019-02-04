@@ -49,13 +49,13 @@ public class GraphVisualization {
         }
     }
 
-    private void addRoutes(ArrayList<List<Integer>> genome) {
+    private void addRoutes(ArrayList<ArrayList<Integer>> genome) {
         for (int i = 0; i < genome.size(); i++) {
             addRoute(genome.get(i), i);
         }
     }
 
-    private void addRoute(List<Integer> route, int index) {
+    private void addRoute(ArrayList<Integer> route, int index) {
         for (int i = 0; i < route.size() - 1; i++) {
             int from = route.get(i);
             int to = route.get(i+1);
@@ -65,7 +65,7 @@ public class GraphVisualization {
         }
     }
 
-    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<List<Integer>> genome) {
+    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<ArrayList<Integer>> genome) {
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
 
@@ -79,19 +79,23 @@ public class GraphVisualization {
 
     public static void main(String[] args) {
         GraphVisualization graph = new GraphVisualization();
-        FileReader f = new FileReader();
+        ProblemData f = new ProblemData();
 
-        ArrayList<List<Integer>> genome = new ArrayList<>();
+        //ArrayList<List<Integer>> genome = new ArrayList<>();
 
-        List<Integer> route = new ArrayList<>(Arrays.asList(51, 1, 2, 3, 51));
-        List<Integer> route2 = new ArrayList<>(Arrays.asList(52, 5, 16, 34, 51));
+        //List<Integer> route = new ArrayList<>(Arrays.asList(51, 1, 2, 3, 51));
+        //List<Integer> route2 = new ArrayList<>(Arrays.asList(52, 5, 16, 34, 51));
+        //genome.add(route);
+        //genome.add(route2);
 
-        genome.add(route);
-        genome.add(route2);
+        f.readFile("input/p69");
 
-        f.readFile("input/p01");
+        Genome genome = new Genome("input/p69");
 
-        graph.visualize(f.getCustomerData(), f.getDepotData(), genome);
+        ArrayList<ArrayList<Integer>> genome_data = genome.getGenome();
+        System.out.println(genome_data);
+
+        graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
 
     }
 }
