@@ -15,14 +15,15 @@ public class GraphVisualization {
 
     private String STYLESHEET =
             "graph {" +
-            "   fill-color: #eeeeee;" +
-            "}" +
-            "node {" +
-            "   size: 7px;" +
-            "}" +
-            "node.depot {" +
-            "   size: 10px;" +
-            "}";
+                    "   fill-color: #eeeeee;" +
+                    "}" +
+                    "node {" +
+                    "   size: 7px;" +
+                    "   fill-color: #777777;" +
+                    "}" +
+                    "node.depot {" +
+                    "   size: 10px;" +
+                    "}";
 
     private String[] COLORS = {"blue", "green", "red", "cyan", "purple", "magenta", "orange"};
 
@@ -30,6 +31,8 @@ public class GraphVisualization {
         graph = new MultiGraph("Network");
 
         graph.addAttribute("ui.stylesheet", STYLESHEET);
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
 
     }
 
@@ -85,7 +88,6 @@ public class GraphVisualization {
         viewer.disableAutoLayout();
 
     }
-
 
     public static void main(String[] args) {
         GraphVisualization graph = new GraphVisualization();
