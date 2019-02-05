@@ -53,12 +53,12 @@ public class Genome {
 
             if (currentLoad + load <= cap){ //checks if adding load capacity
                 nodes.add(randomCustomer); //one indiced
-
                 unvisitedCustomers.remove(randomCustomerIndex);
                 currentLoad += load;
             }
             else if(stopCondition < 2) {
                 stopCondition += 1;
+
             }
             else {break;}
         }

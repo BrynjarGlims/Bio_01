@@ -4,12 +4,14 @@ import org.graphstream.ui.view.Viewer;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
 public class GraphVisualization {
 
     private Graph graph;
+    private HashMap<Integer, String> color_map = new HashMap<>();
 
     private String STYLESHEET =
             "graph {" +
@@ -20,15 +22,9 @@ public class GraphVisualization {
             "}" +
             "node.depot {" +
             "   size: 10px;" +
-            "   fill-color: blue;" +
             "}";
 
-    private String[] COLORS = {"rgb(255,0,0)", "rgb(2,63,165)", "rgb(125,135,185)", "rgb(190,193,212)",
-            "rgb(214,188,192)", "rgb(187,119,132)", "rgb(142,6,59)", "rgb(74,111,227)", "rgb(133,149,225)",
-            "rgb(181,187,227)", "rgb(230,175,185)", "rgb(224,123,145)", "rgb(211,63,106)", "rgb(17,198,56)",
-            "rgb(141,213,147)", "rgb(198,222,199)", "rgb(234,211,198)", "rgb(240,185,141)", "rgb(239,151,8)",
-            "rgb(15,207,192)", "rgb(156,222,214)", "rgb(213,234,231)", "rgb(243,225,235)", "rgb(246,196,225)",
-            "rgb(247,156,212)"};
+    private String[] COLORS = {"blue", "green", "red", "cyan", "purple", "magenta", "orange"};
 
     public GraphVisualization() {
         graph = new MultiGraph("Network");
@@ -39,33 +35,47 @@ public class GraphVisualization {
 
     private void addArrayToGraph(ArrayList<List<Integer>> array, String type) {
         for (List<Integer> element : array) {
-            int id = element.get(0);
+            int id = element.get(0) - 1;
             int x = element.get(1);
             int y = element.get(2);
 
             Node node = graph.addNode(Integer.toString(id));
             node.setAttribute("xyz", x, y);
             node.addAttribute("ui.class", type);
+
+            if (type.equals("depot")) {
+                // set unique color for each depot. Keep the colors for corresponding routes
+                color_map.putIfAbsent(id, COLORS[color_map.size()]);
+                String color = color_map.get(id);
+                node.setAttribute("ui.style", String.format("fill-color: %s;", color));
+            }
         }
     }
 
-    private void addRoutes(ArrayList<ArrayList<Integer>> genome) {
-        for (int i = 0; i < genome.size(); i++) {
-            addRoute(genome.get(i), i);
+    private void addRoutes(ArrayList<Route> genome) {
+        for (Route route : genome) {
+            addRoute(route);
         }
     }
 
-    private void addRoute(ArrayList<Integer> route, int index) {
-        for (int i = 0; i < route.size() - 1; i++) {
-            int from = route.get(i);
-            int to = route.get(i+1);
+    private void addRoute(Route route) {
+        List<Integer> nodes = route.getNodes();
+
+        int starting_depot = nodes.get(0);
+
+        // get color for starting depot from color map
+        String color = color_map.get(starting_depot);
+
+        for (int i = 0; i < nodes.size() - 1; i++) {
+            int from = nodes.get(i);
+            int to = nodes.get(i+1);
             String edge_id = from + "-" + to;
             Edge edge = graph.addEdge(edge_id, from, to);
-            edge.setAttribute("ui.style", String.format("fill-color: %s;", COLORS[index]));
+            edge.setAttribute("ui.style", String.format("fill-color: %s;", color));
         }
     }
 
-    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<ArrayList<Integer>> genome) {
+    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome) {
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
 
@@ -92,7 +102,7 @@ public class GraphVisualization {
 
         Genome genome = new Genome("input/p69");
 
-        ArrayList<ArrayList<Integer>> genome_data = genome.getGenome();
+        ArrayList<Route> genome_data = genome.getGenome();
         System.out.println(genome_data);
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
