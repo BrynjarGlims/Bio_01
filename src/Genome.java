@@ -42,6 +42,7 @@ public class Genome {
 
         int cap = data.getMaxLoads().get(nodes.get(0)-data.getNumCustomers()); //max load of the current vehicle
         int currentLoad = 0;
+        int stopCondition = 0;
         while (currentLoad <= cap && unvisitedCustomers.size() > 0){ //creates a route for a single vehicle
             int randomCustomerIndex = ThreadLocalRandom.current().nextInt(0, unvisitedCustomers.size());
             int randomCustomer = unvisitedCustomers.get(randomCustomerIndex);
@@ -49,18 +50,15 @@ public class Genome {
             int load = data.getCustomerData().get(randomCustomer).get(4); //4 is the load index of data
 
             //Adds the customer to the route, and the load needed for that customer to total load
-            int stopCondition = 0;
+
             if (currentLoad + load <= cap){ //checks if adding load capacity
-<<<<<<< HEAD
                 nodes.add(randomCustomer); //one indiced
-=======
-                route.add(randomCustomer); //one indiced
->>>>>>> 20997a0f7c14e30d16713ba108d9d5b59e308511
+
                 unvisitedCustomers.remove(randomCustomerIndex);
                 currentLoad += load;
             }
-            else if(stopCondition > 2) {
-                continue;
+            else if(stopCondition < 2) {
+                stopCondition += 1;
             }
             else {break;}
         }
@@ -88,14 +86,20 @@ public class Genome {
         return selectRandomEndDepot();
     }
 
+    public double fitness(){
+        double fitness = 0;
+        for (Route r : genome){
+            fitness += r.routeDistance();
+        }
+        return fitness;
+    }
+
 
     public static void main(String[] args){
         Genome g = new Genome("input/p01");
+        System.out.println(g.fitness());
 
 
-        for (Route a : g.getGenome()){
-            System.out.println(a);
-        }
 
     }
 
