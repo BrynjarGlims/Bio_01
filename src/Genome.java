@@ -51,7 +51,11 @@ public class Genome {
             //Adds the customer to the route, and the load needed for that customer to total load
             int stopCondition = 0;
             if (currentLoad + load <= cap){ //checks if adding load capacity
+<<<<<<< HEAD
                 nodes.add(randomCustomer); //one indiced
+=======
+                route.add(randomCustomer); //one indiced
+>>>>>>> 20997a0f7c14e30d16713ba108d9d5b59e308511
                 unvisitedCustomers.remove(randomCustomerIndex);
                 currentLoad += load;
             }
