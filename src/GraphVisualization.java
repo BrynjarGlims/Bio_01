@@ -46,37 +46,36 @@ public class GraphVisualization {
             if (type.equals("depot")) {
                 // set unique color for each depot. Keep the colors for corresponding routes
                 color_map.putIfAbsent(id, COLORS[color_map.size()]);
-                System.out.println(color_map);
                 String color = color_map.get(id);
-                System.out.println(id);
                 node.setAttribute("ui.style", String.format("fill-color: %s;", color));
             }
         }
     }
 
-    private void addRoutes(ArrayList<ArrayList<Integer>> genome) {
-        for (ArrayList<Integer> route : genome) {
+    private void addRoutes(ArrayList<Route> genome) {
+        for (Route route : genome) {
             addRoute(route);
         }
     }
 
-    private void addRoute(ArrayList<Integer> route) {
-        int starting_depot = route.get(0);
+    private void addRoute(Route route) {
+        List<Integer> nodes = route.getNodes();
+
+        int starting_depot = nodes.get(0);
 
         // get color for starting depot from color map
-        System.out.println(starting_depot);
         String color = color_map.get(starting_depot);
 
-        for (int i = 0; i < route.size() - 1; i++) {
-            int from = route.get(i);
-            int to = route.get(i+1);
+        for (int i = 0; i < nodes.size() - 1; i++) {
+            int from = nodes.get(i);
+            int to = nodes.get(i+1);
             String edge_id = from + "-" + to;
             Edge edge = graph.addEdge(edge_id, from, to);
             edge.setAttribute("ui.style", String.format("fill-color: %s;", color));
         }
     }
 
-    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<ArrayList<Integer>> genome) {
+    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome) {
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
 
@@ -103,7 +102,7 @@ public class GraphVisualization {
 
         Genome genome = new Genome("input/p69");
 
-        ArrayList<ArrayList<Integer>> genome_data = genome.getGenome();
+        ArrayList<Route> genome_data = genome.getGenome();
         System.out.println(genome_data);
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
