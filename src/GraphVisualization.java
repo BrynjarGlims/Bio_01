@@ -1,9 +1,6 @@
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.ui.swingViewer.ViewPanel;
-import org.graphstream.ui.view.Viewer;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -76,13 +73,10 @@ public class GraphVisualization {
     public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome) {
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
+
         addRoutes(genome);
 
-        Viewer viewer = graph.display(false);
-
-        ViewPanel view = viewer.getDefaultView();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        view.resizeFrame(screenSize.width / 4 * 3, screenSize.height / 4 * 3);
+        graph.display(false);
 
     }
 
@@ -90,14 +84,18 @@ public class GraphVisualization {
         GraphVisualization graph = new GraphVisualization();
         ProblemData f = new ProblemData();
 
-        String path = "input/p20";
+        String path = "input/p09";
 
         f.readFile(path);
 
-        Genome genome1 = new Genome(path);
-        Genome genome2 = new Genome(path);
 
-        ArrayList<Route> genome_data = genome1.getGenome();
+        GenomeGenerator genomeGenerator = new GenomeGenerator(path);
+
+        ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
+
+        Genome genome1 = genomeGenerator.generateGenome();
+        Genome genome2 = genomeGenerator.generateGenome();
+
 
         System.out.println(genome_data);
 

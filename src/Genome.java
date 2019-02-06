@@ -1,111 +1,97 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Genome {
 
     private ArrayList<Route> genome;
-    private ProblemData  data = new ProblemData();
-    private ArrayList<Integer> unvisitedCustomers = new ArrayList<>();
-    private ArrayList<Integer> depotStartCap = new ArrayList<>();
-    private ArrayList<Integer> depotEndCap = new ArrayList<>();
 
-
-    public Genome(String path){
-        data.readFile(path);
-        this.genome = generateGenome();
+    public Genome(ArrayList<Route> genome){
+        this.genome = genome;
     }
 
 
-    private ArrayList<Route> generateGenome(){
-        for (int i = 0 ; i < data.getNumCustomers() ; i++){
-            unvisitedCustomers.add(i);
-        }
-
-        for (int i = 0 ; i < data.getNumDepots() ; i++){
-            depotStartCap.add(data.getNumVehicles());
-            depotEndCap.add(0);
-        }
-        ArrayList<Route> genome = new ArrayList<>();
-
-        while (!unvisitedCustomers.isEmpty()){ //creates routes for visiting all customers
-            Route route = createRoute();
-            genome.add(route);
-        }
-        return genome;
+    public void insertNode(Route route, int col, int customer){
+        genome.get(genome.indexOf(route)).getNodes().add(col, customer);
 
     }
-    private Route createRoute(){ //creates a route for a single vehicle, starting and ending at depot
-        ArrayList<Integer> nodes = new ArrayList<>();
-        nodes.add(selectRandomStartDepot());
 
+    public void removeNode(Route route, int col){
+        genome.get(genome.indexOf(route)).getNodes().remove(col);
+    }
 
-        int cap = data.getMaxLoads().get(nodes.get(0)-data.getNumCustomers()); //max load of the current vehicle
-        int currentLoad = 0;
-        int stopCondition = 0;
-        while (currentLoad <= cap && unvisitedCustomers.size() > 0){ //creates a route for a single vehicle
-            int randomCustomerIndex = ThreadLocalRandom.current().nextInt(0, unvisitedCustomers.size());
-            int randomCustomer = unvisitedCustomers.get(randomCustomerIndex);
-
-            int load = data.getCustomerData().get(randomCustomer).get(4); //4 is the load index of data
-
-            //Adds the customer to the route, and the load needed for that customer to total load
-
-            if (currentLoad + load <= cap){ //checks if adding load capacity
-                nodes.add(randomCustomer); //one indiced
-                unvisitedCustomers.remove(randomCustomerIndex);
-                currentLoad += load;
+    public int startDepots(int depotId){
+        int count = 0;
+        for (Route r : genome){
+            if (r.getNodes().get(0) == depotId){
+                count += 1;
             }
-            else if(stopCondition < 2) {
-                stopCondition += 1;
+        }
+        return count;
+    }
 
+    public int endDepots(int depotId){
+        int count = 0;
+        for (Route r : genome){
+            if (r.getNodes().get(r.getNodes().size() - 1) == depotId){
+                count += 1;
             }
-            else {break;}
         }
-        nodes.add(selectRandomEndDepot());
-        Route route = new Route(nodes, data);
-        return route;
+        return count;
+    }
+    public void addRoute(Route route){
+        genome.add(route);
     }
 
-
-    private int selectRandomStartDepot(){
-        int randomNum = ThreadLocalRandom.current().nextInt(0, depotStartCap.size());
-        if (depotStartCap.get(randomNum) > 0){
-            depotStartCap.set(randomNum, depotStartCap.get(randomNum) - 1);
-            return randomNum + data.getNumCustomers(); //depot is indexed after customers
+    public void removeRoute(int index){
+        genome.remove(index);
+    }
+    public int getNumNodes(){
+        int sum = 0;
+        for(Route r : genome){
+            sum += r.getNodes().size();
         }
-        return selectRandomStartDepot();
+
+        return sum;
     }
 
-    private int selectRandomEndDepot(){
-        int randomNum = ThreadLocalRandom.current().nextInt(0, depotEndCap.size());
-        if (depotEndCap.get(randomNum) < data.getNumVehicles()){
-            depotEndCap.set(randomNum, depotEndCap.get(randomNum) + 1);
-            return randomNum + data.getNumCustomers(); //depot is indexed after customers
-        }
-        return selectRandomEndDepot();
-    }
-
-    public double fitness(){
+    public double distance(){
         double fitness = 0;
         for (Route r : genome){
             fitness += r.routeDistance();
         }
         return fitness;
     }
-
-
-    public static void main(String[] args){
-        Genome g = new Genome("input/p01");
-        System.out.println(g.fitness());
-
-
-
+    public double fitness(){
+        double fitness = 0;
+        for (Route r : genome){
+            fitness += r.routeFitness();
+        }
+        return fitness;
     }
 
     public ArrayList<Route> getGenome(){
-        return this.genome;
+        return genome;
     }
+
+    public Route randomRoute(){
+        return getGenome().get(ThreadLocalRandom.current().nextInt(0, getGenome().size()));
+    }
+
+
+    public int longestRoute(){
+        int length = 0;
+        for (Route r : getGenome()){
+            if (r.getNodes().size() > length) {
+                length = r.getNodes().size();
+            }
+        }
+        return length;
+    }
+    public int numRoutes(){
+        return getGenome().size();
+    }
+
+
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -115,6 +101,8 @@ public class Genome {
         }
         return sb.toString();
     }
+
+
 
 
 }
