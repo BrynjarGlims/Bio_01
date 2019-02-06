@@ -1,11 +1,22 @@
-graph {
-    fill-color: #dddddd;
+graph { 
+   fill-color: #191919; 
 }
 
-node {
-    size: 10px;
+node { 
+    size: 6px;
+    fill-color: #cccccc;
+    text-color: #eeeeee;
+    text-size: 16px;
+    text-alignment: above;
 }
 
-node.depot {
-    fill-color: blue;
+node.depot { 
+    size: 14px;
+    text-alignment: center;
+    text-style: bold;
+}
+
+edge { 
+    text-color: #eeeeee;
+    arrow-size: 5px, 3px;
 }
