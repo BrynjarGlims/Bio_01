@@ -2,8 +2,6 @@ import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class GraphVisualization {
                     "   size: 10px;" +
                     "}";
 
-    private String[] COLORS = {"blue", "green", "red", "cyan", "purple", "magenta", "orange"};
+    private String[] COLORS = {"blue", "green", "red", "cyan", "purple", "magenta", "orange", "brown", "teal", "pink"};
 
     public GraphVisualization() {
         graph = new MultiGraph("Network");
@@ -93,18 +91,19 @@ public class GraphVisualization {
         GraphVisualization graph = new GraphVisualization();
         ProblemData f = new ProblemData();
 
-        //ArrayList<List<Integer>> genome = new ArrayList<>();
+        //ArrayList<List<Integer>> genomeGenerator = new ArrayList<>();
 
         //List<Integer> route = new ArrayList<>(Arrays.asList(51, 1, 2, 3, 51));
         //List<Integer> route2 = new ArrayList<>(Arrays.asList(52, 5, 16, 34, 51));
-        //genome.add(route);
-        //genome.add(route2);
+        //genomeGenerator.add(route);
+        //genomeGenerator.add(route2);
 
-        f.readFile("input/p69");
+        String path ="input/p23";
+        f.readFile(path);
 
-        Genome genome = new Genome("input/p69");
+        GenomeGenerator genomeGenerator = new GenomeGenerator(path);
 
-        ArrayList<Route> genome_data = genome.getGenome();
+        ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
         System.out.println(genome_data);
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
