@@ -86,18 +86,8 @@ public class Selection {
      */
     public static ArrayList<Genome> elitism(ArrayList<Genome> population, int n) {
         // sort population by fitness DESCENDING
-        Collections.sort(population, new Comparator<Genome>() {
-            @Override
-            public int compare(Genome o1, Genome o2) {
-                double fitness1 = o1.fitness();
-                double fitness2 = o2.fitness();
+        Collections.sort(population, Collections.reverseOrder());
 
-                if (fitness1 == fitness2) {
-                    return 0;
-                }
-                return fitness1 < fitness2 ? 1 : -1;
-            }
-        });
         for (Genome g : population) {
             System.out.println(g.fitness());
         }
