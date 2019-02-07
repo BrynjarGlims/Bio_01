@@ -9,6 +9,16 @@ public class Genome implements Comparable<Genome> {
         this.genome = genome;
     }
 
+    public Genome(Genome original) {
+        ArrayList<Route> genomeCopy = new ArrayList<>();
+
+        for (Route route : original.getGenome()) {
+            ArrayList<Integer> nodes = new ArrayList<>(route.getNodes());
+            genomeCopy.add(new Route(nodes, route.getData()));
+        }
+
+        this.genome = genomeCopy;
+    }
 
     public void replaceNode(Route route, int col, int customer){
         genome.get(genome.indexOf(route)).getNodes().set(col, customer);

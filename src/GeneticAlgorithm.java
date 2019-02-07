@@ -87,6 +87,15 @@ public class GeneticAlgorithm {
 
     public static void main(String[] args){
 
+        ProblemData data = new ProblemData();
+        data.readFile("input/p01");
+        GenomeGenerator gg = new GenomeGenerator(data);
+
+        Genome g1 = gg.generateGenome();
+        Genome g2 = new Genome(g1);
+
+
+
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         String datapath = "input/P01";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
