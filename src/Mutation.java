@@ -9,7 +9,7 @@ public class Mutation {
 
     public List<Integer> shuffledIndices(int n) {
         List<Integer> indexes = new ArrayList<>();
-        for (int i = 0; i < n; i++) indexes.add(i);
+        for (int i = 1; i < n-1; i++) indexes.add(i);
         Collections.shuffle(indexes);
         return indexes;
     }
