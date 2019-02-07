@@ -9,13 +9,9 @@ public class GenomeGenerator {
     private ArrayList<Integer> depotStartCap;
     private ArrayList<Integer> depotEndCap;
 
-
-
-
-    public GenomeGenerator(ProblemData data){
+    public GenomeGenerator(ProblemData data) {
         this.data = data;
     }
-
 
     private void prepareData(){
 

@@ -13,13 +13,14 @@ public class Selection {
      * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
-    public static ArrayList<Genome> stochasticUniversalSampling(ArrayList<Genome> population, double fraction) {
+    public static ArrayList<Genome> stochasticUniversalSampling(Population population, double fraction) {
+        ArrayList<Genome> genomes = population.getPopulation();
 
-        int population_size = population.size();
+        int population_size = genomes.size();
         int n = (int) (population_size * fraction);
         double total_fitness = 0.0;
 
-        for (Genome genome : population) {
+        for (Genome genome : genomes) {
             total_fitness += genome.fitness();
         }
 
@@ -28,7 +29,7 @@ public class Selection {
         ArrayList<Genome> selected = new ArrayList<>();
         int idx = 0;
 
-        for (Genome genome : population) {
+        for (Genome genome : genomes) {
             fitness_sum += genome.fitness() / total_fitness * n;
 
             while (fitness_sum > start + idx) {
@@ -86,14 +87,16 @@ public class Selection {
      * @param n           the number of top genomes to keep
      * @return            genomes with highest fitness in the population
      */
-    public static ArrayList<Genome> elitism(ArrayList<Genome> population, int n) {
+    public static ArrayList<Genome> elitism(Population population, int n) {
         // sort population by fitness DESCENDING
-        Collections.sort(population, Collections.reverseOrder());
+        ArrayList<Genome> genomes = population.getPopulation();
+
+        Collections.sort(genomes, Collections.reverseOrder());
 
         ArrayList<Genome> elites = new ArrayList<>();
 
         // build a copy of the top n individuals
-        for (Genome g : population.subList(0, n)) {
+        for (Genome g : genomes.subList(0, n)) {
             elites.add(new Genome(g.getGenome()));
         }
 
