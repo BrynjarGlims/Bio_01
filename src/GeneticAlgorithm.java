@@ -75,10 +75,15 @@ public class GeneticAlgorithm {
     }
 
 
-    public Genome run(){
+    public Genome run(boolean saveHistory){
+        ArrayList<Double> data = new ArrayList<>();
         for(int i = 0 ; i < numGenerations ; i++){
+            if (saveHistory){
+                data.add(population)
+            }
             population = nextGeneration();
-            
+
+
         }
         Collections.sort(population.getPopulation(), Collections.reverseOrder());
         return population.getPopulation().get(0);
