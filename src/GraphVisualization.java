@@ -19,7 +19,7 @@ public class GraphVisualization {
 
     public GraphVisualization() {
 
-        System.setProperty("gs.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 
         graph.addAttribute("ui.stylesheet", "url('style.css')");
         graph.addAttribute("ui.quality");

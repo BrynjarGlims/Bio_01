@@ -14,6 +14,7 @@ public class Selection {
      * @return            the sampled subset of the population
      */
     public static ArrayList<Genome> stochasticUniversalSampling(ArrayList<Genome> population, double fraction) {
+
         int population_size = population.size();
         int n = (int) (population_size * fraction);
         double total_fitness = 0.0;
@@ -31,7 +32,8 @@ public class Selection {
             fitness_sum += genome.fitness() / total_fitness * n;
 
             while (fitness_sum > start + idx) {
-                selected.add(genome);
+                Genome newGenome = new Genome(genome.getGenome());
+                selected.add(newGenome);
                 idx++;
             }
         }
