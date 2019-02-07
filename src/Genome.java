@@ -71,7 +71,6 @@ public class Genome {
             fitness += r.routeFitness();
         }
         return fitness;
-
     }
 
     public ArrayList<Route> getGenome(){

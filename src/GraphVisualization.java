@@ -1,34 +1,27 @@
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.ui.view.Viewer;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
 public class GraphVisualization {
 
-    private Graph graph;
+    private Graph graph = new MultiGraph("Network");
     private HashMap<Integer, String> color_map = new HashMap<>();
 
-    private String STYLESHEET =
-            "graph {" +
-                    "   fill-color: #eeeeee;" +
-                    "}" +
-                    "node {" +
-                    "   size: 7px;" +
-                    "   fill-color: #777777;" +
-                    "}" +
-                    "node.depot {" +
-                    "   size: 10px;" +
-                    "}";
+    private String[] COLORS = {
+            "#E5198D", "#E9AE01", "#009C94", "#16AA39", "#1678C1", "#9627BA", "#F16301", "#CF1919",
+            "#B5CC18", "#975B33", "#5829BB"
+    }; // pink, yellow, teal, green, blue, purple, orange, red, olive, brown, violet
 
-    private String[] COLORS = {"blue", "green", "red", "cyan", "purple", "magenta", "orange", "brown", "teal", "pink"};
 
     public GraphVisualization() {
-        graph = new MultiGraph("Network");
 
-        graph.addAttribute("ui.stylesheet", STYLESHEET);
+        System.setProperty("gs.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+
+        graph.addAttribute("ui.stylesheet", "url('style.css')");
         graph.addAttribute("ui.quality");
         graph.addAttribute("ui.antialias");
 
@@ -41,8 +34,9 @@ public class GraphVisualization {
             int y = element.get(2);
 
             Node node = graph.addNode(Integer.toString(id));
-            node.setAttribute("xyz", x, y);
+            node.setAttribute("xy", x, y);
             node.addAttribute("ui.class", type);
+            node.addAttribute("ui.label", id);
 
             if (type.equals("depot")) {
                 // set unique color for each depot. Keep the colors for corresponding routes
@@ -71,7 +65,7 @@ public class GraphVisualization {
             int from = nodes.get(i);
             int to = nodes.get(i+1);
             String edge_id = from + "-" + to;
-            Edge edge = graph.addEdge(edge_id, from, to);
+            Edge edge = graph.addEdge(edge_id, from, to, true);
             edge.setAttribute("ui.style", String.format("fill-color: %s;", color));
         }
     }
@@ -82,8 +76,7 @@ public class GraphVisualization {
 
         addRoutes(genome);
 
-        Viewer viewer = graph.display();
-        viewer.disableAutoLayout();
+        graph.display(false);
 
     }
 
@@ -91,19 +84,27 @@ public class GraphVisualization {
         GraphVisualization graph = new GraphVisualization();
         ProblemData f = new ProblemData();
 
-        //ArrayList<List<Integer>> genomeGenerator = new ArrayList<>();
+        String path = "input/p09";
 
-        //List<Integer> route = new ArrayList<>(Arrays.asList(51, 1, 2, 3, 51));
-        //List<Integer> route2 = new ArrayList<>(Arrays.asList(52, 5, 16, 34, 51));
-        //genomeGenerator.add(route);
-        //genomeGenerator.add(route2);
-
-        String path ="input/p23";
         f.readFile(path);
+
 
         GenomeGenerator genomeGenerator = new GenomeGenerator(path);
 
         ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
+
+
+        Genome genome1 = genomeGenerator.generateGenome();
+        Genome genome2 = genomeGenerator.generateGenome();
+
+
+        System.out.println(genome_data);
+
+
+        ArrayList<Genome> population = new ArrayList<>(Arrays.asList(genome1, genome2));
+        ArrayList<Genome> sus = Selection.stochasticUniversalSampling(population, 10);
+        ArrayList<Genome> elite = Selection.elitism(population, 2);
+        ArrayList<Genome> sa = Selection.stochasticAcceptance(population, 10);
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
 
