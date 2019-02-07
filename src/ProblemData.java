@@ -9,6 +9,7 @@ public class ProblemData {
     private int numVehicles;
     private int numDepots;
     private int numCustomers;
+    public String path;
     private ArrayList<Integer> maxDurations = new ArrayList<>();
     private ArrayList<Integer> maxLoads = new ArrayList<>();
     private ArrayList<List<Integer>> customerData = new ArrayList<>();
@@ -19,6 +20,7 @@ public class ProblemData {
 
     public void readFile(String path){
         try {
+            this.path = path.substring(5);
             FileInputStream fstream = new FileInputStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 

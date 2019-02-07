@@ -78,6 +78,7 @@ public class GeneticAlgorithm {
     public Genome run(){
         for(int i = 0 ; i < numGenerations ; i++){
             population = nextGeneration();
+            
         }
         Collections.sort(population.getPopulation(), Collections.reverseOrder());
         return population.getPopulation().get(0);
@@ -92,6 +93,7 @@ public class GeneticAlgorithm {
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);
+        Writer.writer(g);
     }
 }
 
