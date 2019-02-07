@@ -4,7 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GenomeGenerator {
 
 
-    private ProblemData  data = new ProblemData();
+    private ProblemData  data;
     private ArrayList<Integer> unvisitedCustomers;
     private ArrayList<Integer> depotStartCap;
     private ArrayList<Integer> depotEndCap;
@@ -12,8 +12,8 @@ public class GenomeGenerator {
 
 
 
-    public GenomeGenerator(String path){
-        data.readFile(path);
+    public GenomeGenerator(ProblemData data){
+        this.data = data;
     }
 
 
@@ -106,9 +106,4 @@ public class GenomeGenerator {
     private int getCustomerDemand(int customerIndex){
         return data.getCustomerData().get(customerIndex).get(4); //4 is index of the demand for customer
     }
-
-    public ProblemData getData(){
-        return data;
-    }
-
 }
