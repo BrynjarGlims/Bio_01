@@ -43,8 +43,12 @@ public class GeneticAlgorithm {
         //SELECTION
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
         //CROSSOVER
+        System.out.println("Before crossover");
+        System.out.println(selected.size());
         if (this.crossoverRate > 0) {
             selected = crossover.generateNextGeneration(selected);
+            System.out.println("After Crossover");
+            System.out.println(selected.size());
         }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
@@ -54,17 +58,20 @@ public class GeneticAlgorithm {
         if (this.mutationRateSwapGlobal > 0) {
             selected = mutator.mutatePopulationGlobal(selected, this.mutationRateSwapGlobal);
         }
-        ArrayList<Integer> indices = new ArrayList<>();
-        for (int j = 0 ; j < populationSize ; j++){
-            indices.add(j);
-        }
-        Collections.shuffle(indices);
-        List<Integer> outIndices = indices.subList(0, numElite);
 
-        for (int i = 0 ; i < numElite ; i++){
-            selected.set(outIndices.get(i), elites.get(i));
-        }
+        if (this.numElite > 0) {
+            ArrayList<Integer> indices = new ArrayList<>();
+            for (int j = 0 ; j < populationSize ; j++){
+                indices.add(j);
+            }
+            Collections.shuffle(indices);
+            List<Integer> outIndices = indices.subList(0, numElite);
 
+            for (int i = 0 ; i < numElite ; i++){
+                selected.set(outIndices.get(i), elites.get(i));
+            }
+
+        }
 
         return new Population(this.data, selected);
     }
@@ -80,14 +87,12 @@ public class GeneticAlgorithm {
 
     public static void main(String[] args){
 
-        JSONObject parameters = new JSONObject("parameters.json");
+        JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         String datapath = "input/P01";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
         Genome g = GA.run();
         GraphVisualization graph = new GraphVisualization();
-        graph.visualize(GA.data.getCustomerData(), GA.data.getDepotData(), g.getGenome());
-
-
+        graph.visualize(GA.data, g);
     }
 
 }

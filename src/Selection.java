@@ -33,7 +33,7 @@ public class Selection {
             fitness_sum += genome.fitness() / total_fitness * n;
 
             while (fitness_sum > start + idx) {
-                Genome newGenome = new Genome(genome.getGenome());
+                Genome newGenome = new Genome(new ArrayList<>(genome.getGenome()));
                 selected.add(newGenome);
                 idx++;
             }

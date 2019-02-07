@@ -70,11 +70,17 @@ public class GraphVisualization {
         }
     }
 
-    public void visualize(ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome) {
+    public void visualize(ProblemData data, Genome genome) {
+
+        // ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome
+
+        ArrayList<List<Integer>> customers = data.getCustomerData();
+        ArrayList<List<Integer>> depots = data.getDepotData();
+
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
 
-        addRoutes(genome);
+        addRoutes(genome.getGenome());
 
         graph.display(false);
 
