@@ -55,7 +55,7 @@ public class Route {
         double fitness = routeDistance();
         if (durationCap != 0) {
             if (fitness > durationCap){
-                fitness += Math.pow(fitness-durationCap, 2);
+                fitness += 1000 + Math.pow(fitness-durationCap, 2);
             }
         }
         return  fitness;
