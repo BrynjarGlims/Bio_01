@@ -19,13 +19,14 @@ public class Crossover {
                 nextGen.add(g);
             }
         }
-        System.out.println("in crossover" + nextGen.size());
         return nextGen;
     }
 
     public ArrayList<Genome> bestCostRouteCrossover(Genome genome1, Genome genome2){
         ArrayList<Genome> genomes = new ArrayList<>();
-        genomes.add(twoGenomeCrossover(genome1, genome2));
+
+        Genome g1 = (twoGenomeCrossover(genome1, genome2));
+        genomes.add(g1);
         genomes.add(twoGenomeCrossover(genome2, genome1));
         return genomes;
     }
@@ -40,7 +41,7 @@ public class Crossover {
         List<Integer> removedRoute1 = randomRoute.getNodes().subList(1, randomRoute.getNodes().size()-1);
 
         //create next generation genomes
-        Genome newGenome = new Genome(new ArrayList<>(genome1.getGenome()));
+        Genome newGenome = new Genome(genome1);
 
         //replace start and end depot
         replaceDepot(startDepot,endDepot, newGenome);
@@ -61,6 +62,7 @@ public class Crossover {
                 newGenome.removeRoute(i);
             }
         }
+
         return newGenome;
     }
 
@@ -108,7 +110,7 @@ public class Crossover {
             Map nearestDepot = nearestDepot(customer, genome);
             Route optRoute = null;
             int optCol = 0;
-            double fitness = (double) nearestDepot.get("distance") + genome.fitness();
+            double fitness = (double) nearestDepot.get("distance") + genome.fitness(false);
 
             Iterator<Route> iterator2 = genome.getGenome().iterator();
             while(iterator2.hasNext()){
@@ -118,7 +120,7 @@ public class Crossover {
                     if (r.hasCapacity(customer)) {
 
                         genome.insertNode(r, j, customer);
-                        dist = genome.fitness();
+                        dist = genome.fitness(false);
 
                         if(dist < fitness){
                             optRoute = r;
@@ -127,7 +129,7 @@ public class Crossover {
                         }
                         genome.removeNode(r, j);
             } } }
-            if (fitness == (double) nearestDepot.get("distance")+ genome.fitness()) {
+            if (fitness == (double) nearestDepot.get("distance")+ genome.fitness(false)) {
                 Route route = createRoute((int)nearestDepot.get("depot") - data.getNumCustomers(), customer);
                 genome.addRoute(route);
             }

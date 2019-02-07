@@ -21,7 +21,7 @@ public class Selection {
         double total_fitness = 0.0;
 
         for (Genome genome : genomes) {
-            total_fitness += genome.fitness();
+            total_fitness += genome.fitness(true);
         }
 
         double fitness_sum = 0.0;
@@ -30,7 +30,7 @@ public class Selection {
         int idx = 0;
 
         for (Genome genome : genomes) {
-            fitness_sum += genome.fitness() / total_fitness * n;
+            fitness_sum += genome.fitness(true) / total_fitness * n;
 
             while (fitness_sum > start + idx) {
                 Genome newGenome = new Genome(new ArrayList<>(genome.getGenome()));
@@ -56,7 +56,7 @@ public class Selection {
         ArrayList<Double> fitness_values = new ArrayList<>();
 
         for (Genome genome : population) {
-            double fitness = genome.fitness();
+            double fitness = genome.fitness(true);
             fitness_values.add(fitness);
             if (fitness > max_fitness) {
                 max_fitness = fitness;

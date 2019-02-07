@@ -45,21 +45,13 @@ public class GeneticAlgorithm {
         //SELECTION
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
         //CROSSOVER
-        System.out.println("Before crossover");
-        System.out.println(selected.size());
         if (this.crossoverRate > 0) {
             selected = crossover.generateNextGeneration(selected);
-            System.out.println("After Crossover");
-            System.out.println(selected.size());
-        }
+            }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
-            System.out.println("Before mutation");
-            System.out.println(selected.toString());
             selected = mutator.mutatePopulationRoute(selected, this.mutationRateSwapRoute);
-            System.out.println("After mutation");
-            System.out.println(selected.toString());
-        }
+          }
 
         if (this.mutationRateSwapGlobal > 0) {
             selected = mutator.mutatePopulationGlobal(selected, this.mutationRateSwapGlobal);
@@ -93,25 +85,14 @@ public class GeneticAlgorithm {
 
     public static void main(String[] args){
 
-        ProblemData data = new ProblemData();
-        data.readFile("input/p01");
-        GenomeGenerator gg = new GenomeGenerator(data);
-
-        Genome g1 = gg.generateGenome();
-        Genome g2 = new Genome(g1);
-
-        Route r1 = g1.randomRoute();
-        Route r2 = new Route(r1);
-        r1.getNodes().set(0, 0);
-
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P01";
+        String datapath = "input/P04";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
         Genome g = GA.run();
         GraphVisualization graph = new GraphVisualization();
+        System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);
     }
-
 }
 
 
