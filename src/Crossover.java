@@ -11,13 +11,15 @@ public class Crossover {
 
     public ArrayList<Genome> generateNextGeneration(ArrayList<Genome> prevGen){
         ArrayList<Genome> nextGen = new ArrayList<>();
-        for (int i = 0 ; i < prevGen.size() ; i+= 2){
+        int size = prevGen.size();
+        for (int i = 0 ; i < size ; i+= 2){
             Genome g1 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
             Genome g2 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
             for (Genome g : bestCostRouteCrossover(g1, g2)){
                 nextGen.add(g);
             }
         }
+        System.out.println("in crossover" + nextGen.size());
         return nextGen;
     }
 
