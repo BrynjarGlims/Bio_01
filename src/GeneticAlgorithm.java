@@ -43,7 +43,7 @@ public class GeneticAlgorithm {
              elites = Selection.elitism(this.population, this.numElite);
         }
         //SELECTION
-        ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
+        ArrayList<Genome> selected = Selection.tournamentSelection(this.population, 2);
         //CROSSOVER
         if (this.crossoverRate > 0) {
             selected = crossover.generateNextGeneration(selected);
@@ -90,7 +90,7 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P23";
+        String datapath = "input/P02";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
         Genome g = GA.run();
         GraphVisualization graph = new GraphVisualization();

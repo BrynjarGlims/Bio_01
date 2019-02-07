@@ -1,6 +1,8 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Selection {
@@ -104,5 +106,36 @@ public class Selection {
         }
 
         return elites;
+    }
+
+    public static ArrayList<Genome> tournamentSelection(Population population, int size) {
+        ArrayList<Genome> selected = new ArrayList<>();
+
+        for (int i = 0; i < population.getPopulation().size(); i++) {
+            selected.add(tournament(population, size));
+        }
+        return selected;
+    }
+
+    private static Genome tournament(Population population, int size) {
+        ArrayList<Genome> genomes = population.getPopulation();
+
+        ArrayList<Integer> indices = new ArrayList<>();
+        for (int i = 1; i < genomes.size(); i++) indices.add(i);
+        Collections.shuffle(indices);
+
+        ArrayList<Genome> selected = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            selected.add(new Genome(genomes.get(indices.get(i))));
+        }
+
+        Collections.sort(selected);
+
+        if (ThreadLocalRandom.current().nextDouble() < 0.8) {
+            return selected.get(0);
+        } else {
+            return selected.get(ThreadLocalRandom.current().nextInt(0, size));
+        }
     }
 }
