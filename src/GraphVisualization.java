@@ -93,7 +93,6 @@ public class GraphVisualization {
 
         ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
 
-
         Genome genome1 = genomeGenerator.generateGenome();
         Genome genome2 = genomeGenerator.generateGenome();
 
@@ -103,10 +102,10 @@ public class GraphVisualization {
         System.out.println(genome_data);
 
 
-        ArrayList<Genome> population = new ArrayList<>(Arrays.asList(genome1, genome2));
+       /* ArrayList<Genome> population = new ArrayList<>(Arrays.asList(genome1, genome2));
         ArrayList<Genome> sus = Selection.stochasticUniversalSampling(population, 100);
         ArrayList<Genome> elite = Selection.elitism(population, 2);
-        ArrayList<Genome> sa = Selection.stochasticAcceptance(population, 10);
+        ArrayList<Genome> sa = Selection.stochasticAcceptance(population, 10);*/
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
 
