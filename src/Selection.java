@@ -90,10 +90,13 @@ public class Selection {
         // sort population by fitness DESCENDING
         Collections.sort(population, Collections.reverseOrder());
 
-        for (Genome g : population) {
-            System.out.println(g.fitness());
+        ArrayList<Genome> elites = new ArrayList<>();
+
+        // build a copy of the top n individuals
+        for (Genome g : population.subList(0, n)) {
+            elites.add(new Genome(g.getGenome()));
         }
-        // return a copy of the top individuals
-        return new ArrayList<>(population.subList(0, n));
+
+        return elites;
     }
 }
