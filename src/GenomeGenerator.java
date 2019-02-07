@@ -9,13 +9,11 @@ public class GenomeGenerator {
     private ArrayList<Integer> depotStartCap;
     private ArrayList<Integer> depotEndCap;
 
-
-
-
     public GenomeGenerator(String path){
         data.readFile(path);
     }
 
+    public GenomeGenerator(ProblemData data) { this.data = data; }
 
     private void prepareData(){
 
