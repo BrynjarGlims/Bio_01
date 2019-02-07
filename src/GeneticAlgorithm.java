@@ -1,6 +1,8 @@
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 public class GeneticAlgorithm {
 
@@ -34,8 +36,9 @@ public class GeneticAlgorithm {
 
     public Population nextGeneration() {
         //ELITE
+        ArrayList<Genome> elites = new ArrayList<>();
         if (this.numElite > 0) {
-            ArrayList<Genome> elites = Selection.elitism(this.population, this.numElite);
+             elites = Selection.elitism(this.population, this.numElite);
         }
         //SELECTION
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
@@ -51,11 +54,39 @@ public class GeneticAlgorithm {
         if (this.mutationRateSwapGlobal > 0) {
             selected = mutator.mutatePopulationGlobal(selected, this.mutationRateSwapGlobal);
         }
+        ArrayList<Integer> indices = new ArrayList<>();
+        for (int j = 0 ; j < populationSize ; j++){
+            indices.add(j);
+        }
+        Collections.shuffle(indices);
+        List<Integer> outIndices = indices.subList(0, numElite);
+
+        for (int i = 0 ; i < numElite ; i++){
+            selected.set(outIndices.get(i), elites.get(i));
+        }
+
 
         return new Population(this.data, selected);
     }
 
+
+    public Genome run(){
+        for(int i = 0 ; i < numGenerations ; i++){
+            population = nextGeneration();
+        }
+        Collections.sort(population.getPopulation(), Collections.reverseOrder());
+        return population.getPopulation().get(0);
+    }
+
     public static void main(String[] args){
+
+        JSONObject parameters = new JSONObject("parameters.json");
+        String datapath = "input/P01";
+        GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
+        Genome g = GA.run();
+        GraphVisualization graph = new GraphVisualization();
+        graph.visualize(GA.data.getCustomerData(), GA.data.getDepotData(), g.getGenome());
+
 
     }
 
