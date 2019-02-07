@@ -15,6 +15,12 @@ public class Population {
             population.add(generator.generateGenome());
         }
     }
+    public Population(ProblemData data, ArrayList<Genome> population){
+        this.generator = new GenomeGenerator(data);
+        this.data = data;
+        this.population = population;
+
+    }
 
 
 
