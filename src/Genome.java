@@ -128,6 +128,6 @@ public class Genome implements Comparable<Genome> {
 
     @Override
     public int compareTo(Genome o) {
-        return Double.compare(this.fitness(), o.fitness());
+        return Double.compare(this.fitness(true), o.fitness(true));
     }
 }
