@@ -21,24 +21,26 @@ public class Route {
     public double routeDistance(){
         double distance = 0;
 
-        //first depot to first customer
-        distance += nodeDistance(data.getDepotData().get(nodes.get(0) - data.getNumCustomers()),
-                                data.getCustomerData().get(nodes.get(1)));
-
-
-        //customer to customer
-        for (int i = 1 ; i < nodes.size() - 2 ; i++){
-            distance += nodeDistance(data.getCustomerData().get(nodes.get(i)),
-                                    data.getCustomerData().get(nodes.get(i+1)));
+        for (int i = 0 ; i < nodes.size() - 1 ; i++){
+            distance += nodeDistance(nodes.get(i), nodes.get(i+1));
         }
-        //last customer to  last depot
-        distance += nodeDistance(data.getCustomerData().get(nodes.get(nodes.size()-2)),
-                                data.getDepotData().get(nodes.get(nodes.size()-1) - data.getNumCustomers()));
-
         return distance;
     }
+
+    private List<Integer> getData(int id){
+        List<Integer> node;
+        if(id < data.getNumCustomers()){
+            node = data.getCustomerData().get(id);
+        }
+        else{
+            node = data.getDepotData().get(id - data.getNumCustomers());
+        }
+        return node;
+    }
     
-    public static double nodeDistance(List<Integer> node1, List<Integer> node2){ //euclidean distance between nodes
+    public  double nodeDistance(int id1, int id2){ //euclidean distance between nodes
+        List<Integer> node1 = getData(id1);
+        List<Integer> node2 =getData(id2);
         int x1 = node1.get(1);
         int y1 = node1.get(2);
 
