@@ -92,11 +92,9 @@ public class GenomeGenerator {
 
     private int selectRandomEndDepot(){
         int randomNum = ThreadLocalRandom.current().nextInt(0, depotEndCap.size());
-        if (depotEndCap.get(randomNum) < data.getNumVehicles()){
-            depotEndCap.set(randomNum, depotEndCap.get(randomNum) + 1);
-            return randomNum + data.getNumCustomers(); //depot is indexed after customers
-        }
-        return selectRandomEndDepot();
+
+        return randomNum + data.getNumCustomers(); //depot is indexed after customers
+
     }
 
     private int getCustomerDemand(int customerIndex){

@@ -96,6 +96,7 @@ public class GeneticAlgorithm {
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);
+        //Writer.writer(g);
     }
 }
 

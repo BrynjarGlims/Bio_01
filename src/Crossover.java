@@ -91,23 +91,23 @@ public class Crossover {
             genome.replaceNode(route, 0, startDepot);
         }
 
-        if (genome.endDepots(endDepot) < data.getNumVehicles()) {
-            double dist = Double.POSITIVE_INFINITY;
-            Route route = null;
-            Iterator<Route> iterator1 = genome.getGenome().iterator();
-            while (iterator1.hasNext()) {
-                Route r = iterator1.next();
-                int depotIndex = r.getNodes().size();
-                double tempDistance = r.nodeDistance(endDepot, r.getNodes().get(depotIndex - 2));
-                if (tempDistance < dist) {
 
-                    dist = tempDistance;
-                    route = r;
-                }
+        double dist = Double.POSITIVE_INFINITY;
+        Route route = null;
+        Iterator<Route> iterator1 = genome.getGenome().iterator();
+        while (iterator1.hasNext()) {
+            Route r = iterator1.next();
+            int depotIndex = r.getNodes().size();
+            double tempDistance = r.nodeDistance(endDepot, r.getNodes().get(depotIndex - 2));
+            if (tempDistance < dist) {
+
+                dist = tempDistance;
+                route = r;
             }
-            genome.replaceNode(route, route.getNodes().size() - 1, endDepot);
         }
+        genome.replaceNode(route, route.getNodes().size() - 1, endDepot);
     }
+
     private void insertRemovedNodes(List<Integer> removed, Genome genome){
         Iterator<Integer> iterator1 = removed.iterator();
         while(iterator1.hasNext()){

@@ -3,7 +3,7 @@
   "numGenerations": 3000,
   "numElite": 2,
   "crossoverRate": 0.8,
-  "mutationRateSwapRoute": 0.2,
-  "mutationRateSwapGlobal": 0.05,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.005,
   "selectionRate": 1
 }
