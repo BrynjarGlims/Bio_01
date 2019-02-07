@@ -104,7 +104,6 @@ public class GraphVisualization {
         GenomeGenerator genomeGenerator = new GenomeGenerator(path);
 
         ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
-        System.out.println(genome_data);
 
         graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
 

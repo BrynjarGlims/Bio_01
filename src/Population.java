@@ -16,109 +16,153 @@ public class Population {
         }
     }
 
-    public Genome bestCostRouteCrossver(Genome genome1, Genome genome2){
 
-        ArrayList<Genome> newPopulation = new ArrayList<>();
+
+    public ArrayList<Genome> generatePopulation(int populationSize){
+        ArrayList<Genome> population = new ArrayList<>();
+        for (int i = 0 ; i < populationSize ; i++){
+            population.add(generator.generateGenome());
+        }
+        return population;
+    }
+
+    public ArrayList<Genome> generateNextGeneration(ArrayList<Genome> prevGen){
+        ArrayList<Genome> nextGen = new ArrayList<>();
+        for (int i = 0 ; i < prevGen.size() ; i+= 2){
+            Genome g1 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
+            Genome g2 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
+            for (Genome g : bestCostRouteCrossover(g1, g2)){
+                nextGen.add(g);
+            }
+        }
+        return nextGen;
+    }
+
+
+    public ArrayList<Genome>bestCostRouteCrossover(Genome genome1, Genome genome2){
+        ArrayList<Genome> genomes = new ArrayList<>();
+        genomes.add(twoGenomeCrossover(genome1, genome2));
+        genomes.add(twoGenomeCrossover(genome2, genome1));
+        return genomes;
+    }
+
+    public Genome twoGenomeCrossover(Genome genome1, Genome genome2){
 
         //Randomly select a route from each genome
-        Route randomRoute1 = genome1.randomRoute();
-        Route randomRoute2 = genome2.randomRoute();
-
+        Route randomRoute = genome2.randomRoute();
         //remove depot at start and end
-        List<Integer> removedRoute1 = randomRoute1.getNodes().subList(1, randomRoute1.getNodes().size()-1);
-        List<Integer> removedRoute2 = randomRoute2.getNodes().subList(1, randomRoute2.getNodes().size()-1);
+        int startDepot = randomRoute.getNodes().get(0);
+        int endDepot = randomRoute.getNodes().get(randomRoute.getNodes().size() - 1);
+
+
+        List<Integer> removedRoute1 = randomRoute.getNodes().subList(1, randomRoute.getNodes().size()-1);
+
 
         //create next generation genomes
-        Genome newGenome1 = new Genome(genome1.getGenome());
-        Genome newGenome2 = new Genome(genome2.getGenome());
+        Genome newGenome = new Genome(new ArrayList<>(genome1.getGenome()));
+
+        //replace start and end depot
+        replaceDepot(startDepot,endDepot, newGenome);
 
         //remove the nodes selected in genome A from B, and vice versa
 
         Iterator<Integer> iterator1 = removedRoute1.iterator();
-        while(iterator1.hasNext()){
+        while(iterator1.hasNext()) {
             int i = iterator1.next();
-            removeCustomer(newGenome2,i);
-
+            removeCustomer(newGenome, i);
         }
-
 
         //add the removed nodes back in again at optimal place according to fitness
-        Genome nextGen =insertRemovedNodes(removedRoute1, newGenome2);
-        ArrayList<Route> newGenome = new ArrayList<>();
-        for (int i = 0 ; i < nextGen.getGenome().size() ; i++){
-            if (nextGen.getGenome().get(i).getNodes().size() != 2){
-                newGenome.add(nextGen.getGenome().get(i));
+        insertRemovedNodes(removedRoute1, newGenome);
+
+        //remove routes that has become empty
+        for (int i = 0 ; i < newGenome.getGenome().size() ; i++){
+            if (newGenome.getGenome().get(i).getNodes().size() == 2){
+                newGenome.removeRoute(i);
             }
         }
-        Genome out = new Genome(newGenome);
-
-
-        return out;
+        return newGenome;
     }
 
+    private void replaceDepot(int startDepot, int endDepot, Genome genome) {
+        if (genome.startDepots(startDepot) < data.getNumVehicles()) {
+            double dist = Double.POSITIVE_INFINITY;
+            Route route = null;
 
-    private Genome insertRemovedNodes(List<Integer> removed, Genome genome){
+
+            Iterator<Route> iterator1 = genome.getGenome().iterator();
+            while (iterator1.hasNext()) {
+                Route r = iterator1.next();
+                double tempDistance = r.nodeDistance(r.getNodes().get(0), r.getNodes().get(1));
+
+                if (tempDistance < dist) {
+                    dist = tempDistance;
+                    route = r;
+                }
+            }
+            genome.replaceNode(route, 0, startDepot);
+        }
+
+        if (genome.endDepots(endDepot) < data.getNumVehicles()) {
+            double dist = Double.POSITIVE_INFINITY;
+            Route route = null;
+            Iterator<Route> iterator1 = genome.getGenome().iterator();
+            while (iterator1.hasNext()) {
+                Route r = iterator1.next();
+                int depotIndex = r.getNodes().size();
+                double tempDistance = r.nodeDistance(r.getNodes().get(depotIndex - 1),
+                        r.getNodes().get(depotIndex - 2));
+                if (tempDistance < dist) {
+                    dist = tempDistance;
+                    route = r;
+                }
+            }
+            genome.replaceNode(route, route.getNodes().size() - 1, endDepot);
+        }
+    }
+    private void insertRemovedNodes(List<Integer> removed, Genome genome){
         Iterator<Integer> iterator1 = removed.iterator();
-        System.out.println(removed.size());
         while(iterator1.hasNext()){
             int customer = iterator1.next();
 
             Map nearestDepot = nearestDepot(customer, genome);
             Route optRoute = null;
             int optCol = 0;
-            double fitness = (double) nearestDepot.get("distance");
+            double fitness = (double) nearestDepot.get("distance") + genome.fitness();
 
             Iterator<Route> iterator2 = genome.getGenome().iterator();
             while(iterator2.hasNext()){
                 Route r = iterator2.next();
                 for (int j = 1 ; j < r.getNodes().size() - 1 ; j++){
-                    int dist = 0;
+                    double dist = 0;
                     if (r.hasCapacity(customer)) {
 
                         genome.insertNode(r, j, customer);
+                        dist = genome.fitness();
+                        /*
+                        dist += r.nodeDistance(r.getNodes().get(j - 1),
+                                r.getNodes().get(j));
+                        dist += r.nodeDistance(r.getNodes().get(j),
+                                r.getNodes().get(j+1));*/
 
-                        if (j == 1) {
-                            dist += Route.nodeDistance(data.getDepotData().get(r.getNodes().get(j - 1)-data.getNumCustomers()),
-                                    data.getCustomerData().get(customer));
-                        }
-                        else {
-                            dist += Route.nodeDistance(data.getCustomerData().get(r.getNodes().get(j - 1)),
-                                    data.getCustomerData().get(customer));
-                        }
-                        if(j == r.getNodes().size() - 2){
-                            dist += Route.nodeDistance(data.getDepotData().get(r.getNodes().get(j + 1)-data.getNumCustomers()),
-                                    data.getCustomerData().get(customer));
-                        }
-                        else{
-                            dist += Route.nodeDistance(data.getCustomerData().get(r.getNodes().get(j + 1)),
-                                    data.getCustomerData().get(customer));
-                        }
                         if(dist < fitness){
                             optRoute = r;
                             optCol = j;
                             fitness = dist;
+
                         }
                         genome.removeNode(r, j);
                     }
                 }
             }
-            if (fitness == (double) nearestDepot.get("distance")) {
-                System.out.println("added Route");
+            if (fitness == (double) nearestDepot.get("distance")+ genome.fitness()) {
                 Route route = createRoute((int)nearestDepot.get("depot") - data.getNumCustomers(), customer);
                 genome.addRoute(route);
-
-                System.out.println(genome.getNumNodes());
                 }
             else {
-                System.out.println("inserted node");
                 genome.insertNode(optRoute, optCol, customer);
-
-                System.out.println(genome.getNumNodes());
             }
-
         }
-        return genome;
-
     }
 
     private Map nearestDepot(int customer, Genome genome){
@@ -128,8 +172,8 @@ public class Population {
         while(iterator.hasNext()){
             List<Integer> depot = iterator.next();
             double dist = 0;
-            if (genome.startDepots(depot.get(0)) < data.getNumVehicles()){
-                dist += Route.nodeDistance(data.getCustomerData().get(customer),depot) * 2;
+            if (genome.startDepots(depot.get(0)-1) < data.getNumVehicles()){
+                dist += genome.getGenome().get(0).nodeDistance(customer,depot.get(0)-1) * 2;
                 if (dist < nearestDebot){
                     depotNumber = depot.get(0)+data.getNumCustomers()-1;
                     nearestDebot = dist;
@@ -210,21 +254,27 @@ public class Population {
     }
 
     public static void main(String[] args){
-        Population p = new Population("input/p10", 2);
+        Population p = new Population("input/p01", 2);
 
-        Genome g1 = p.getPopulation().get(0);
-        Genome g2 = p.getPopulation().get(1);
-
-        Genome nextGen = p.bestCostRouteCrossver(g1,g2);
-
-
+        ArrayList<Genome> population = p.generatePopulation(128);
+        for(int i = 0; i < 1000 ; i++){
+            population = p.generateNextGeneration(population);
+        }
+        Genome g1 = population.get(0);
+        for (List<Integer> d : p.data.getDepotData()){
+            if(g1.startDepots(d.get(0)-1) > p.data.getNumVehicles())
+            System.out.println("invalid route");
+        }
+        for (Route r : g1.getGenome()){
+            if (r.getRouteLoad() > r.getRouteLoadCapacity())
+            System.out.println("invalid route");
+        }
         GraphVisualization graph = new GraphVisualization();
 
-        System.out.println(g2);
 
-        System.out.println(nextGen);
+        //System.out.println(nextGen);
 
-    graph.visualize(p.data.getCustomerData(), p.data.getDepotData(), nextGen.getGenome());
+        graph.visualize(p.data.getCustomerData(), p.data.getDepotData(), g1.getGenome());
 
 
     }
