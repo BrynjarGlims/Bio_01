@@ -14,6 +14,8 @@ public class Route {
 
     }
 
+    public ProblemData getData(){return data;}
+
     public ArrayList<Integer> getNodes(){return nodes;}
 
     public double routeDistance(){
