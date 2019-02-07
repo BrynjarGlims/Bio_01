@@ -29,16 +29,13 @@ public class Crossover {
     }
 
     public Genome twoGenomeCrossover(Genome genome1, Genome genome2){
-
         //Randomly select a route from each genome
         Route randomRoute = genome2.randomRoute();
         //remove depot at start and end
         int startDepot = randomRoute.getNodes().get(0);
         int endDepot = randomRoute.getNodes().get(randomRoute.getNodes().size() - 1);
 
-
         List<Integer> removedRoute1 = randomRoute.getNodes().subList(1, randomRoute.getNodes().size()-1);
-
 
         //create next generation genomes
         Genome newGenome = new Genome(new ArrayList<>(genome1.getGenome()));
@@ -47,7 +44,6 @@ public class Crossover {
         replaceDepot(startDepot,endDepot, newGenome);
 
         //remove the nodes selected in genome A from B, and vice versa
-
         Iterator<Integer> iterator1 = removedRoute1.iterator();
         while(iterator1.hasNext()) {
             int i = iterator1.next();
@@ -78,7 +74,6 @@ public class Crossover {
                 double tempDistance = r.nodeDistance(startDepot, r.getNodes().get(1));
 
                 if (tempDistance < dist) {
-                    //System.out.println(tempDistance);
                     dist = tempDistance;
                     route = r;
                 }
@@ -100,9 +95,7 @@ public class Crossover {
                     route = r;
                 }
             }
-
             genome.replaceNode(route, route.getNodes().size() - 1, endDepot);
-
         }
     }
     private void insertRemovedNodes(List<Integer> removed, Genome genome){
@@ -125,17 +118,13 @@ public class Crossover {
                         genome.insertNode(r, j, customer);
                         dist = genome.fitness();
 
-
                         if(dist < fitness){
                             optRoute = r;
                             optCol = j;
                             fitness = dist;
-
                         }
                         genome.removeNode(r, j);
-                    }
-                }
-            }
+            } } }
             if (fitness == (double) nearestDepot.get("distance")+ genome.fitness()) {
                 Route route = createRoute((int)nearestDepot.get("depot") - data.getNumCustomers(), customer);
                 genome.addRoute(route);
@@ -167,22 +156,6 @@ public class Crossover {
         return out;
     }
 
-    private int startDepot(Genome genome){
-        int startDepot = data.getNumCustomers() + ThreadLocalRandom.current().nextInt(0, data.getNumDepots());
-        if (genome.startDepots(startDepot) < data.getNumVehicles()){
-            return startDepot;
-        }
-        return startDepot(genome);
-    }
-
-
-    private int endDepot(Genome genome){
-        int endDepot = data.getNumCustomers() + ThreadLocalRandom.current().nextInt(0, data.getNumDepots());
-        if (genome.endDepots(endDepot) < data.getNumVehicles()){
-            return endDepot;
-        }
-        return endDepot(genome);
-    }
 
     public Route createRoute(int depot, int customer){
         ArrayList<Integer> nodes = new ArrayList<>();
@@ -199,16 +172,6 @@ public class Crossover {
         return genome;
     }
 
-    public ArrayList<ArrayList<Integer>> addCustomer(ArrayList<ArrayList<Integer>> input, int customer, int row, int col){
-        input.get(row).set(col,customer);
-        return input;
-    }
-
-
-    private int getRandomCustomer(ArrayList<Integer> remainingCustomers){
-        int randomCustomerIndex = ThreadLocalRandom.current().nextInt(0, remainingCustomers.size());
-        return remainingCustomers.get(randomCustomerIndex);
-    }
 
     private int findCustomerInGenome(int customer, Genome genome) {
         for (int i = 0; i < genome.getGenome().size(); i++) {
@@ -222,10 +185,4 @@ public class Crossover {
     private int findCustomerInRoute(int customer, int r, Genome g){
         return g.getGenome().get(r).getNodes().indexOf(customer);
     }
-
-    private int findCustomerAtLoc(int row, int col, Genome genome){
-        return genome.getGenome().get(row).getNodes().get(col);
-
-    }
-
 }
