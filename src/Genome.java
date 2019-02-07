@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Genome {
+public class Genome implements Comparable<Genome> {
 
     private ArrayList<Route> genome;
 
     public Genome(ArrayList<Route> genome){
         this.genome = genome;
     }
-
 
     public void insertNode(Route route, int col, int customer){
         genome.get(genome.indexOf(route)).getNodes().add(col, customer);
@@ -55,18 +54,24 @@ public class Genome {
     }
 
     public double distance(){
-        double fitness = 0;
+        double distance = 0;
         for (Route r : genome){
-            fitness += r.routeDistance();
+            distance += r.routeDistance();
         }
-        return fitness;
+        return distance;
     }
+
+    /**
+     * Calculate the combined inverse fitness for a genome.
+     * This lets us maximize the inverse fitness to solve the problem.
+     * @return  inverse fitness of genome
+     */
     public double fitness(){
         double fitness = 0;
         for (Route r : genome){
             fitness += r.routeFitness();
         }
-        return fitness;
+        return 1 / fitness;
     }
 
     public ArrayList<Route> getGenome(){
@@ -102,7 +107,8 @@ public class Genome {
         return sb.toString();
     }
 
-
-
-
+    @Override
+    public int compareTo(Genome o) {
+        return Double.compare(this.fitness(), o.fitness());
+    }
 }
