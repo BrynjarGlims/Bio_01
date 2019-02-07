@@ -73,7 +73,8 @@ public class Selection {
                     break;
                 }
             }
-            selected.add(population.get(individual % popSize));
+            Genome newGenome = new Genome(population.get(individual % popSize));
+            selected.add(newGenome);
         }
 
         return selected;
