@@ -40,7 +40,6 @@ public class Mutation {
     }
 
     public Route mutateRoute(Route route) {
-        System.out.println(route.getNodes());
         Route newRoute = new Route(route);
         ArrayList<Integer> nodes = newRoute.getNodes();
 
@@ -57,9 +56,7 @@ public class Mutation {
         int index = ThreadLocalRandom.current().nextInt(0, newGenome.getGenome().size());
         Route route = newGenome.getGenome().get(index);
 
-        if (route.getNodes().size() <= 3) {
-            System.out.println("Size less than three");
-        } else {
+        if (route.getNodes().size() > 3) {
             Route mutatedRoute = mutateRoute(route);
             newGenome.getGenome().set(index, mutatedRoute);
         }

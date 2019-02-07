@@ -43,24 +43,30 @@ public class Crossover {
         //create next generation genomes
         Genome newGenome = new Genome(genome1);
 
-        //replace start and end depot
-        replaceDepot(startDepot,endDepot, newGenome);
+        // Try to crossover. If one customer can't find a depot, abort.
+        try {
+            //replace start and end depot
+            replaceDepot(startDepot,endDepot, newGenome);
 
-        //remove the nodes selected in genome A from B, and vice versa
-        Iterator<Integer> iterator1 = removedRoute1.iterator();
-        while(iterator1.hasNext()) {
-            int i = iterator1.next();
-            removeCustomer(newGenome, i);
-        }
-
-        //add the removed nodes back in again at optimal place according to fitness
-        insertRemovedNodes(removedRoute1, newGenome);
-
-        //remove routes that has become empty
-        for (int i = 0 ; i < newGenome.getGenome().size() ; i++){
-            if (newGenome.getGenome().get(i).getNodes().size() == 2){
-                newGenome.removeRoute(i);
+            //remove the nodes selected in genome A from B, and vice versa
+            Iterator<Integer> iterator1 = removedRoute1.iterator();
+            while(iterator1.hasNext()) {
+                int i = iterator1.next();
+                removeCustomer(newGenome, i);
             }
+
+            //add the removed nodes back in again at optimal place according to fitness
+            insertRemovedNodes(removedRoute1, newGenome);
+
+            //remove routes that has become empty
+            for (int i = 0 ; i < newGenome.getGenome().size() ; i++){
+                if (newGenome.getGenome().get(i).getNodes().size() == 2){
+                    newGenome.removeRoute(i);
+                }
+            }
+        }
+        catch (Exception e) {
+            return new Genome(genome1);
         }
 
         return newGenome;
