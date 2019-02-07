@@ -23,8 +23,6 @@ public class Population {
 
     }
 
-
-
     public ArrayList<Genome> generatePopulation(int populationSize){
         ArrayList<Genome> population = new ArrayList<>();
         for (int i = 0 ; i < populationSize ; i++){
@@ -35,5 +33,13 @@ public class Population {
 
     public ArrayList<Genome> getPopulation() {
         return population;
+    }
+
+    public double meanFitness() {
+        double sum = 0;
+        for (Genome g : population) {
+            sum += g.fitness(false);
+        }
+        return sum / population.size();
     }
 }

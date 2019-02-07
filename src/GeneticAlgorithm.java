@@ -78,6 +78,10 @@ public class GeneticAlgorithm {
     public Genome run(){
         for(int i = 0 ; i < numGenerations ; i++){
             population = nextGeneration();
+
+            if ((i % 100) == 0) {
+                System.out.println(String.format("Generation %d, mean fitness %.2f", i, population.meanFitness()));
+            }
         }
         Collections.sort(population.getPopulation(), Collections.reverseOrder());
         return population.getPopulation().get(0);
@@ -86,7 +90,7 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P04";
+        String datapath = "input/P23";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
         Genome g = GA.run();
         GraphVisualization graph = new GraphVisualization();

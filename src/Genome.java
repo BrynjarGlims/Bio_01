@@ -22,15 +22,17 @@ public class Genome implements Comparable<Genome> {
 
     public void replaceNode(Route route, int col, int customer){
         genome.get(genome.indexOf(route)).getNodes().set(col, customer);
+        route.updateFitness();
     }
 
     public void insertNode(Route route, int col, int customer){
         genome.get(genome.indexOf(route)).getNodes().add(col, customer);
-
+        route.updateFitness();
     }
 
     public void removeNode(Route route, int col){
         genome.get(genome.indexOf(route)).getNodes().remove(col);
+        route.updateFitness();
     }
 
     public int startDepots(int depotId){
@@ -84,7 +86,7 @@ public class Genome implements Comparable<Genome> {
     public double fitness(boolean inverse){
         double fitness = 0;
         for (Route r : genome){
-            fitness += r.routeFitness();
+            fitness += r.getFitness();
         }
         if (inverse) {
             return 1 / fitness;
