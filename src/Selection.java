@@ -49,13 +49,15 @@ public class Selection {
      * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
-    public static ArrayList<Genome> stochasticAcceptance(ArrayList<Genome> population, double fraction) {
-        int n = (int) (population.size() * fraction);
-        int popSize = population.size();
+    public static ArrayList<Genome> stochasticAcceptance(Population population, double fraction) {
+        ArrayList<Genome> genomes = population.getPopulation();
+
+        int n = (int) (genomes.size() * fraction);
+        int popSize = genomes.size();
         double max_fitness = 0.0;
         ArrayList<Double> fitness_values = new ArrayList<>();
 
-        for (Genome genome : population) {
+        for (Genome genome : genomes) {
             double fitness = genome.fitness(true);
             fitness_values.add(fitness);
             if (fitness > max_fitness) {
@@ -73,7 +75,7 @@ public class Selection {
                     break;
                 }
             }
-            Genome newGenome = new Genome(population.get(individual % popSize));
+            Genome newGenome = new Genome(genomes.get(individual % popSize));
             selected.add(newGenome);
         }
 
