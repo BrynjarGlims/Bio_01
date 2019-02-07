@@ -40,7 +40,8 @@ public class Mutation {
     }
 
     public Route mutateRoute(Route route) {
-        Route newRoute = new Route(new ArrayList<>(route.getNodes()), route.getData());
+        System.out.println(route.getNodes());
+        Route newRoute = new Route(route);
         ArrayList<Integer> nodes = newRoute.getNodes();
 
         List<Integer> indexes = shuffledIndices(nodes.size());
@@ -51,23 +52,23 @@ public class Mutation {
 
     public Genome mutateGenomeRoute(Genome genome) {
 
-        Genome newGenome = new Genome(new ArrayList<>(genome.getGenome()));
-
-        if (newGenome.getGenome().size() <= 3) {
-            return newGenome;
-        }
+        Genome newGenome = new Genome(genome);
 
         int index = ThreadLocalRandom.current().nextInt(0, newGenome.getGenome().size());
         Route route = newGenome.getGenome().get(index);
 
-        Route mutatedRoute = mutateRoute(route);
-        newGenome.getGenome().set(index, mutatedRoute);
+        if (route.getNodes().size() <= 3) {
+            System.out.println("Size less than three");
+        } else {
+            Route mutatedRoute = mutateRoute(route);
+            newGenome.getGenome().set(index, mutatedRoute);
+        }
 
         return newGenome;
     }
 
     public Genome mutateGenomeGlobal(Genome genome) {
-        Genome newGenome = new Genome(new ArrayList<>(genome.getGenome()));
+        Genome newGenome = new Genome(genome);
         ArrayList<Route> routes = newGenome.getGenome();
 
         if (routes.size() <= 1) {
@@ -78,10 +79,10 @@ public class Mutation {
         List<Integer> indices = shuffledIndices(routes.size());
 
         Route source = routes.get(indices.get(0));
-        Route newSource = new Route(new ArrayList<>(source.getNodes()), source.getData());
+        Route newSource = new Route(source);
 
         Route target = routes.get(indices.get(1));
-        Route newTarget = new Route(new ArrayList<>(target.getNodes()), target.getData());
+        Route newTarget = new Route(target);
 
         int indexToSwap = ThreadLocalRandom.current().nextInt(1, source.getNodes().size() - 1);
         int customerToSwap = source.getNodes().get(indexToSwap);

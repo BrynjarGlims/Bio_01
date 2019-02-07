@@ -11,12 +11,19 @@ public class Route {
         this.nodes = nodes;
         this.data = data;
         this.durationCap = data.getMaxDurations().get((nodes.get(0) - data.getNumCustomers()));
+    }
 
+    public Route(Route original) {
+        this.data = original.getData();
+        this.durationCap = original.getDurationCap();
+        this.nodes = new ArrayList<>(original.getNodes());
     }
 
     public ProblemData getData(){return data;}
 
     public ArrayList<Integer> getNodes(){return nodes;}
+
+    public int getDurationCap(){return durationCap;}
 
     public double routeDistance(){
         double distance = 0;

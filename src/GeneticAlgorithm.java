@@ -1,6 +1,8 @@
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 
@@ -52,7 +54,11 @@ public class GeneticAlgorithm {
         }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
+            System.out.println("Before mutation");
+            System.out.println(selected.toString());
             selected = mutator.mutatePopulationRoute(selected, this.mutationRateSwapRoute);
+            System.out.println("After mutation");
+            System.out.println(selected.toString());
         }
 
         if (this.mutationRateSwapGlobal > 0) {
@@ -94,7 +100,9 @@ public class GeneticAlgorithm {
         Genome g1 = gg.generateGenome();
         Genome g2 = new Genome(g1);
 
-
+        Route r1 = g1.randomRoute();
+        Route r2 = new Route(r1);
+        r1.getNodes().set(0, 0);
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         String datapath = "input/P01";

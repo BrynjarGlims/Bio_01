@@ -81,12 +81,16 @@ public class Genome implements Comparable<Genome> {
      * This lets us maximize the inverse fitness to solve the problem.
      * @return  inverse fitness of genome
      */
-    public double fitness(){
+    public double fitness(boolean inverse){
         double fitness = 0;
         for (Route r : genome){
             fitness += r.routeFitness();
         }
-        return 1 / fitness;
+        if (inverse) {
+            return 1 / fitness;
+        } else {
+            return fitness;
+        }
     }
 
     public ArrayList<Route> getGenome(){

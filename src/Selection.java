@@ -96,8 +96,8 @@ public class Selection {
         ArrayList<Genome> elites = new ArrayList<>();
 
         // build a copy of the top n individuals
-        for (Genome g : genomes.subList(0, n)) {
-            elites.add(new Genome(g.getGenome()));
+        for (Genome original : genomes.subList(0, n)) {
+            elites.add(new Genome(original));
         }
 
         return elites;
