@@ -46,7 +46,7 @@ public class GeneticAlgorithm {
         ArrayList<Genome> selected = Selection.tournamentSelection(this.population, 2);
         //CROSSOVER
         if (this.crossoverRate > 0) {
-            selected = crossover.generateNextGeneration(selected);
+            selected = crossover.generateNextGeneration(selected, crossoverRate);
             }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
@@ -75,13 +75,23 @@ public class GeneticAlgorithm {
     }
 
 
-    public Genome run(){
+    public Genome run(boolean saveHistory){
+        ArrayList<Double> data = new ArrayList<>();
         for(int i = 0 ; i < numGenerations ; i++){
+            if (saveHistory){
+                data.add(Writer.round(population.meanFitness(),2));
+            }
             population = nextGeneration();
 
             if ((i % 100) == 0) {
                 System.out.println(String.format("Generation %d, mean fitness %.2f", i, population.meanFitness()));
             }
+
+        }
+        if (saveHistory){
+            String name = this.data.path +"_generations_" + numGenerations + "_mutationRate_route_global_"+mutationRateSwapRoute+"_"+mutationRateSwapGlobal+
+                    "_crossRate_"+crossoverRate;
+            Writer.historyWriter(name, data);
         }
         Collections.sort(population.getPopulation(), Collections.reverseOrder());
         return population.getPopulation().get(0);
@@ -92,7 +102,7 @@ public class GeneticAlgorithm {
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         String datapath = "input/P02";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
-        Genome g = GA.run();
+        Genome g = GA.run(true);
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);

@@ -9,14 +9,20 @@ public class Crossover {
         this.data = data;
     }
 
-    public ArrayList<Genome> generateNextGeneration(ArrayList<Genome> prevGen){
+    public ArrayList<Genome> generateNextGeneration(ArrayList<Genome> prevGen, double crossoverRate){
         ArrayList<Genome> nextGen = new ArrayList<>();
         int size = prevGen.size();
         for (int i = 0 ; i < size ; i+= 2){
             Genome g1 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
             Genome g2 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
-            for (Genome g : bestCostRouteCrossover(g1, g2)){
-                nextGen.add(g);
+            if (ThreadLocalRandom.current().nextDouble(0,1) < crossoverRate) {
+                for (Genome g : bestCostRouteCrossover(g1, g2)) {
+                    nextGen.add(g);
+                }
+            }
+            else{
+                nextGen.add(g1);
+                nextGen.add(g2);
             }
         }
         return nextGen;
