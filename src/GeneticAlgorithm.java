@@ -79,11 +79,19 @@ public class GeneticAlgorithm {
         ArrayList<Double> data = new ArrayList<>();
         for(int i = 0 ; i < numGenerations ; i++){
             if (saveHistory){
-                data.add(population)
+                data.add(Writer.round(population.meanFitness(),2));
             }
             population = nextGeneration();
 
+            if ((i % 100) == 0) {
+                System.out.println(String.format("Generation %d, mean fitness %.2f", i, population.meanFitness()));
+            }
 
+        }
+        if (saveHistory){
+            String name = this.data.path +"_generations_" + numGenerations + "_mutationRate_route_global_"+mutationRateSwapRoute+"_"+mutationRateSwapGlobal+
+                    "_crossRate_"+crossoverRate;
+            Writer.historyWriter(name, data);
         }
         Collections.sort(population.getPopulation(), Collections.reverseOrder());
         return population.getPopulation().get(0);
@@ -92,13 +100,13 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P04";
+        String datapath = "input/P01";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
-        Genome g = GA.run();
+        Genome g = GA.run(true);
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);
-        Writer.writer(g);
+        //Writer.writer(g);
     }
 }
 

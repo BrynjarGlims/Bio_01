@@ -6,6 +6,7 @@ public class Route {
     private ArrayList<Integer> nodes;
     private ProblemData data;
     private int durationCap;
+    private double fitness = Double.POSITIVE_INFINITY;
 
     public Route(ArrayList<Integer> nodes, ProblemData data) {
         this.nodes = nodes;
@@ -56,8 +57,6 @@ public class Route {
         return Math.sqrt(Math.pow(x1 - x2, 2)+ Math.pow(y1 - y2, 2));
     }
 
-
-
     public double routeFitness(){
         double fitness = routeDistance();
         if (durationCap != 0) {
@@ -66,6 +65,17 @@ public class Route {
             }
         }
         return  fitness;
+    }
+
+    public double getFitness(){
+        if (this.fitness == Double.POSITIVE_INFINITY) {
+            this.fitness = routeFitness();
+        }
+        return this.fitness;
+    }
+
+    public void updateFitness(){
+        this.fitness = routeFitness();
     }
 
     public int getRouteLoad(){
