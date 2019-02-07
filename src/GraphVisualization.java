@@ -81,34 +81,5 @@ public class GraphVisualization {
     }
 
     public static void main(String[] args) {
-        GraphVisualization graph = new GraphVisualization();
-        ProblemData f = new ProblemData();
-
-        String path = "input/p69";
-
-        f.readFile(path);
-
-
-        GenomeGenerator genomeGenerator = new GenomeGenerator(path);
-
-        ArrayList<Route> genome_data = genomeGenerator.generateGenome().getGenome();
-
-
-        Genome genome1 = genomeGenerator.generateGenome();
-        Genome genome2 = genomeGenerator.generateGenome();
-
-        Double fitness1 = genome1.fitness();
-        Double fitness2 = genome2.fitness();
-
-        System.out.println(genome_data);
-
-
-        ArrayList<Genome> population = new ArrayList<>(Arrays.asList(genome1, genome2));
-        ArrayList<Genome> sus = Selection.stochasticUniversalSampling(population, 100);
-        ArrayList<Genome> elite = Selection.elitism(population, 2);
-        ArrayList<Genome> sa = Selection.stochasticAcceptance(population, 10);
-
-        graph.visualize(f.getCustomerData(), f.getDepotData(), genome_data);
-
     }
 }
