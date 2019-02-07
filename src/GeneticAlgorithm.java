@@ -46,7 +46,7 @@ public class GeneticAlgorithm {
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
         //CROSSOVER
         if (this.crossoverRate > 0) {
-            selected = crossover.generateNextGeneration(selected);
+            selected = crossover.generateNextGeneration(selected, crossoverRate);
             }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
@@ -100,7 +100,7 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P01";
+        String datapath = "input/P02";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
         Genome g = GA.run(true);
         GraphVisualization graph = new GraphVisualization();
