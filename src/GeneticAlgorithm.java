@@ -100,9 +100,9 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P02";
+        String datapath = "input/P23";
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
-        Genome g = GA.run(true);
+        Genome g = GA.run(false);
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
         graph.visualize(GA.data, g);

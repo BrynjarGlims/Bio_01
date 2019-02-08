@@ -104,14 +104,16 @@ public class Genome implements Comparable<Genome> {
     }
 
 
-    public int longestRoute(){
-        int length = 0;
+    public Route longestRoute(){
+        double fitness = -1;
+        Route longest = null;
         for (Route r : getGenome()){
-            if (r.getNodes().size() > length) {
-                length = r.getNodes().size();
+            if (r.getFitness() > fitness) {
+                longest = r;
+                fitness = r.getFitness();
             }
         }
-        return length;
+        return longest;
     }
     public int numRoutes(){
         return getGenome().size();

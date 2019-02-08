@@ -7,17 +7,20 @@ public class Route {
     private ProblemData data;
     private int durationCap;
     private double fitness = Double.POSITIVE_INFINITY;
+    private boolean feasability;
 
     public Route(ArrayList<Integer> nodes, ProblemData data) {
         this.nodes = nodes;
         this.data = data;
         this.durationCap = data.getMaxDurations().get((nodes.get(0) - data.getNumCustomers()));
+        routeFitness();
     }
 
     public Route(Route original) {
         this.data = original.getData();
         this.durationCap = original.getDurationCap();
         this.nodes = new ArrayList<>(original.getNodes());
+        routeFitness();
     }
 
     public ProblemData getData(){return data;}
@@ -59,9 +62,11 @@ public class Route {
 
     public double routeFitness(){
         double fitness = routeDistance();
+        this.feasability = true;
         if (durationCap != 0) {
             if (fitness > durationCap){
                 fitness += 1000 + Math.pow(fitness-durationCap, 2);
+                this.feasability = false;
             }
         }
         return  fitness;
@@ -97,6 +102,9 @@ public class Route {
         return getRouteLoad() + getCustomerDemand(customerIndex) <= getRouteLoadCapacity();
     }
 
+    public boolean getFeasablility(){
+        return this.feasability;
+    }
 
     public String toString(){
         StringBuilder sb = new StringBuilder();

@@ -38,8 +38,14 @@ public class Crossover {
     }
 
     public Genome twoGenomeCrossover(Genome genome1, Genome genome2){
-        //Randomly select a route from each genome
-        Route randomRoute = genome2.randomRoute();
+        //Randomly select a route from genome
+        Route randomRoute;
+        if (ThreadLocalRandom.current().nextDouble(0,1) < 0.8){
+            randomRoute = genome2.randomRoute();
+        }
+        else{
+            randomRoute = genome2.longestRoute();
+        }
         //remove depot at start and end
         int startDepot = randomRoute.getNodes().get(0);
         int endDepot = randomRoute.getNodes().get(randomRoute.getNodes().size() - 1);
@@ -72,6 +78,7 @@ public class Crossover {
             }
         }
         catch (Exception e) {
+            System.out.println(e);
             return new Genome(genome1);
         }
 
