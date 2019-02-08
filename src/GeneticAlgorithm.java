@@ -47,18 +47,18 @@ public class GeneticAlgorithm {
         }
         //SELECTION
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, this.selectionRate);
-        //CROSSOVER
-        if (this.crossoverRate > 0) {
-            selected = crossover.generateNextGeneration(selected, crossoverRate);
-            }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
             selected = mutator.mutatePopulationRoute(selected, this.mutationRateSwapRoute);
-          }
+        }
 
         if (this.mutationRateSwapGlobal > 0) {
             selected = mutator.mutatePopulationGlobal(selected, this.mutationRateSwapGlobal);
         }
+        //CROSSOVER
+        if (this.crossoverRate > 0) {
+            selected = crossover.generateNextGeneration(selected, crossoverRate);
+            }
 
         if (this.numElite > 0) {
             ArrayList<Integer> indices = new ArrayList<>();
@@ -87,8 +87,8 @@ public class GeneticAlgorithm {
             population = nextGeneration();
 
             if ((i % 100) == 0) {
-                System.out.println(String.format("Generation %d, mean fitness %.2f, mean distance %.2f",
-                        i, population.meanFitness(), population.meanDistance()));
+                System.out.println(String.format("Generation %d, mean fitness %.2f, mean distance %.2f, best %.2f",
+                        i, population.meanFitness(), population.meanDistance(), population.bestFitness()));
             }
 
         }

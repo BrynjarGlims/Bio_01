@@ -46,6 +46,8 @@ public class Mutation {
         List<Integer> indexes = shuffledIndices(nodes.size());
         Collections.swap(nodes, indexes.get(0), indexes.get(1));
 
+        newRoute.updateFitness();
+
         return newRoute;
     }
 
@@ -85,8 +87,8 @@ public class Mutation {
             return newGenome;
         }
 
-        int   indexToSwap = ThreadLocalRandom.current().nextInt(1, source.getNodes().size() - 1);
-        int  targetIndexToSwap = ThreadLocalRandom.current().nextInt(1, target.getNodes().size() - 1);
+        int indexToSwap = ThreadLocalRandom.current().nextInt(1, source.getNodes().size() - 1);
+        int targetIndexToSwap = ThreadLocalRandom.current().nextInt(1, target.getNodes().size() - 1);
 
         int customerToSwap = source.getNodes().get(indexToSwap);
 
@@ -94,6 +96,9 @@ public class Mutation {
 
         newSource.getNodes().set(indexToSwap, targetCustomerToSwap);
         newTarget.getNodes().set(targetIndexToSwap, customerToSwap);
+
+        newSource.updateFitness();
+        newTarget.updateFitness();
 
         if (newSource.getRouteLoad() <= newSource.getRouteLoadCapacity()
                 & newTarget.getRouteLoad() <= newTarget.getRouteLoadCapacity()) {

@@ -86,6 +86,17 @@ public class GraphVisualization {
 
     }
 
+    public void visualize(ProblemData data) {
+        ArrayList<List<Integer>> customers = data.getCustomerData();
+        ArrayList<List<Integer>> depots = data.getDepotData();
+
+        addArrayToGraph(customers, "customer");
+        addArrayToGraph(depots, "depot");
+
+        graph.display(false);
+
+    }
+
     public static void main(String[] args) {
     }
 }

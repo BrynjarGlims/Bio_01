@@ -6,5 +6,5 @@
   "mutationRateSwapRoute": 0.05,
   "mutationRateSwapGlobal": 0.05,
   "selectionRate": 1,
-  "dataPath": "input/P23"
+  "dataPath": "input/P21"
 }

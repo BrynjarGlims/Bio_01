@@ -13,8 +13,8 @@ public class Genome implements Comparable<Genome> {
         ArrayList<Route> genomeCopy = new ArrayList<>();
 
         for (Route route : original.getGenome()) {
-            ArrayList<Integer> nodes = new ArrayList<>(route.getNodes());
-            genomeCopy.add(new Route(nodes, route.getData()));
+            //ArrayList<Integer> nodes = new ArrayList<>(route.getNodes());
+            genomeCopy.add(new Route(route));
         }
 
         this.genome = genomeCopy;

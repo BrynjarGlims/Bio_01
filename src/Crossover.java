@@ -25,6 +25,12 @@ public class Crossover {
                 nextGen.add(g2);
             }
         }
+
+        // set last depot to closest one
+        for (Genome g : nextGen) {
+            setNearestDepotEnd(g);
+        }
+
         return nextGen;
     }
 
@@ -78,7 +84,6 @@ public class Crossover {
             }
         }
         catch (Exception e) {
-            System.out.println(e);
             return new Genome(genome1);
         }
 
@@ -207,5 +212,39 @@ public class Crossover {
 
     private int findCustomerInRoute(int customer, int r, Genome g){
         return g.getGenome().get(r).getNodes().indexOf(customer);
+    }
+
+    private void setNearestDepotEnd(Genome genome) {
+        for (Route r : genome.getGenome()) {
+            int nearestDepot = nearestDepot(r);
+
+            int position = r.getNodes().size() - 1;
+
+            if (r.getNodes().get(position) != nearestDepot) {
+                r.getNodes().set(position, nearestDepot);
+                r.updateFitness();
+            }
+        }
+    }
+
+    private int nearestDepot(Route route) {
+        double minDistance = Double.POSITIVE_INFINITY;
+        int bestDepotId = -1;
+
+        Iterator<List<Integer>> iterator = this.data.getDepotData().iterator();
+
+        int customerId = route.getNodes().get(route.getNodes().size() - 2);
+        int depotId;
+
+        while (iterator.hasNext()) {
+            List<Integer> depot = iterator.next();
+            depotId = depot.get(0) - 1;
+            double dist = route.nodeDistance(customerId, depotId);
+            if (dist < minDistance) {
+                minDistance = dist;
+                bestDepotId = depotId;
+            }
+        }
+        return bestDepotId;
     }
 }

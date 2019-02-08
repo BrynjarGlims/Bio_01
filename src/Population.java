@@ -50,4 +50,9 @@ public class Population {
         }
         return sum / population.size();
     }
+
+    public double bestFitness() {
+        Collections.sort(this.population, Collections.reverseOrder());
+        return this.population.get(0).fitness(false);
+    }
 }
