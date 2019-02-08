@@ -21,8 +21,7 @@ public class GeneticAlgorithm {
     private Crossover crossover;
     private Mutation mutator;
 
-    public GeneticAlgorithm(JSONObject parameters, String dataPath){
-        data.readFile(dataPath);
+    public GeneticAlgorithm(JSONObject parameters){
         this.populationSize = parameters.getInt("populationSize");
         this.numGenerations = parameters.getInt("numGenerations");
         this.numElite = parameters.getInt("numElite");
@@ -30,6 +29,10 @@ public class GeneticAlgorithm {
         this.mutationRateSwapRoute = parameters.getDouble("mutationRateSwapRoute");
         this.mutationRateSwapGlobal = parameters.getDouble("mutationRateSwapGlobal");
         this.selectionRate = parameters.getDouble("selectionRate");
+
+        String dataPath = parameters.getString("dataPath");
+
+        data.readFile(dataPath);
         population = new Population(data, populationSize);
 
         this.crossover = new Crossover(this.data);
@@ -43,7 +46,7 @@ public class GeneticAlgorithm {
              elites = Selection.elitism(this.population, this.numElite);
         }
         //SELECTION
-        ArrayList<Genome> selected = Selection.tournamentSelection(this.population, 2);
+        ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, 1);
         //CROSSOVER
         if (this.crossoverRate > 0) {
             selected = crossover.generateNextGeneration(selected, crossoverRate);
@@ -84,7 +87,8 @@ public class GeneticAlgorithm {
             population = nextGeneration();
 
             if ((i % 100) == 0) {
-                System.out.println(String.format("Generation %d, mean fitness %.2f", i, population.meanFitness()));
+                System.out.println(String.format("Generation %d, mean fitness %.2f, mean distance %.2f",
+                        i, population.meanFitness(), population.meanDistance()));
             }
 
         }
@@ -100,13 +104,13 @@ public class GeneticAlgorithm {
     public static void main(String[] args){
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
-        String datapath = "input/P02";
-        GeneticAlgorithm GA = new GeneticAlgorithm(parameters, datapath);
+        GeneticAlgorithm GA = new GeneticAlgorithm(parameters);
         Genome g = GA.run(true);
         GraphVisualization graph = new GraphVisualization();
         System.out.println(g.fitness(false));
+        System.out.println(g.distance());
         graph.visualize(GA.data, g);
-        //Writer.writer(g);
+        Writer.genomeWriter(g);
     }
 }
 

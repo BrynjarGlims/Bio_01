@@ -72,6 +72,7 @@ public class Crossover {
             }
         }
         catch (Exception e) {
+            e.printStackTrace();
             return new Genome(genome1);
         }
 

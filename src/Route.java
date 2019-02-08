@@ -6,18 +6,20 @@ public class Route {
     private ArrayList<Integer> nodes;
     private ProblemData data;
     private int durationCap;
-    private double fitness = Double.POSITIVE_INFINITY;
+    private double fitness;
 
     public Route(ArrayList<Integer> nodes, ProblemData data) {
         this.nodes = nodes;
         this.data = data;
         this.durationCap = data.getMaxDurations().get((nodes.get(0) - data.getNumCustomers()));
+        this.fitness = routeFitness();
     }
 
     public Route(Route original) {
         this.data = original.getData();
         this.durationCap = original.getDurationCap();
         this.nodes = new ArrayList<>(original.getNodes());
+        this.fitness = routeFitness();
     }
 
     public ProblemData getData(){return data;}

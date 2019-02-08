@@ -81,10 +81,15 @@ public class Mutation {
         Route target = routes.get(indices.get(1));
         Route newTarget = new Route(target);
 
-        int indexToSwap = ThreadLocalRandom.current().nextInt(1, source.getNodes().size() - 1);
+        if (source.getNodes().size() <= 3 | target.getNodes().size() <= 3) {
+            return newGenome;
+        }
+
+        int   indexToSwap = ThreadLocalRandom.current().nextInt(1, source.getNodes().size() - 1);
+        int  targetIndexToSwap = ThreadLocalRandom.current().nextInt(1, target.getNodes().size() - 1);
+
         int customerToSwap = source.getNodes().get(indexToSwap);
 
-        int targetIndexToSwap = ThreadLocalRandom.current().nextInt(1, target.getNodes().size() - 1);
         int targetCustomerToSwap = target.getNodes().get(targetIndexToSwap);
 
         newSource.getNodes().set(indexToSwap, targetCustomerToSwap);

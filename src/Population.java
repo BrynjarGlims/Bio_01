@@ -42,4 +42,12 @@ public class Population {
         }
         return sum / population.size();
     }
+
+    public double meanDistance() {
+        double sum = 0;
+        for (Genome g : population) {
+            sum += g.distance();
+        }
+        return sum / population.size();
+    }
 }

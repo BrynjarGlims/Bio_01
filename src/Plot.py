@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    fname = "C:/Users/b_gli/Documents/skole/4_klasse/Spring/bio/Bio_01/histories/PLOT"
+    fname = "histories/PLOT"
 
     with open(fname) as f:
         content = f.readlines()

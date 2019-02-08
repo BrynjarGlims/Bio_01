@@ -96,7 +96,7 @@ public class Selection {
         // sort population by fitness DESCENDING
         ArrayList<Genome> genomes = population.getPopulation();
 
-        Collections.sort(genomes, Collections.reverseOrder());
+        genomes.sort(Collections.reverseOrder());
 
         ArrayList<Genome> elites = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public class Selection {
             selected.add(new Genome(genomes.get(indices.get(i))));
         }
 
-        Collections.sort(selected);
+        selected.sort(Collections.reverseOrder());
 
         if (ThreadLocalRandom.current().nextDouble() < 0.8) {
             return selected.get(0);
