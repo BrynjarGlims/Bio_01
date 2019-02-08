@@ -1,9 +1,9 @@
 {
   "populationSize": 50,
   "numGenerations": 3000,
-  "numElite": 2,
-  "crossoverRate": 0.8,
-  "mutationRateSwapRoute": 0.01,
-  "mutationRateSwapGlobal": 0.005,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.05,
+  "mutationRateSwapGlobal": 0.05,
   "selectionRate": 1
 }
