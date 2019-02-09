@@ -1,0 +1,95 @@
+DGS004
+null 0 0
+cg  "ui.quality":true
+cg  "ui.antialias":true
+cg  "ui.stylesheet":"url('style.css')"
+an "0"
+cn "0"  "ui.label":0
+cn "0"  "xy":{37,52}
+cn "0"  "ui.class":"customer"
+an "1"
+cn "1"  "ui.label":1
+cn "1"  "xy":{49,49}
+cn "1"  "ui.class":"customer"
+an "2"
+cn "2"  "ui.label":2
+cn "2"  "xy":{52,64}
+cn "2"  "ui.class":"customer"
+an "3"
+cn "3"  "ui.label":3
+cn "3"  "xy":{20,26}
+cn "3"  "ui.class":"customer"
+an "4"
+cn "4"  "ui.label":4
+cn "4"  "xy":{40,30}
+cn "4"  "ui.class":"customer"
+an "5"
+cn "5"  "ui.label":5
+cn "5"  "xy":{21,47}
+cn "5"  "ui.class":"customer"
+an "6"
+cn "6"  "ui.label":6
+cn "6"  "xy":{17,63}
+cn "6"  "ui.class":"customer"
+an "7"
+cn "7"  "ui.label":7
+cn "7"  "xy":{31,62}
+cn "7"  "ui.class":"customer"
+an "8"
+cn "8"  "ui.label":8
+cn "8"  "xy":{52,33}
+cn "8"  "ui.class":"customer"
+an "9"
+cn "9"  "ui.label":9
+cn "9"  "xy":{51,21}
+cn "9"  "ui.class":"customer"
+an "10"
+cn "10"  "xy":{20,20}
+cn "10"  "ui.class":"depot"
+cn "10"  "ui.label":10
+cn "10"  "ui.style":"fill-color: #e03997;"
+an "11"
+cn "11"  "xy":{30,40}
+cn "11"  "ui.class":"depot"
+cn "11"  "ui.label":11
+cn "11"  "ui.style":"fill-color: #fbbd08;"
+an "12"
+cn "12"  "xy":{80,2}
+cn "12"  "ui.class":"depot"
+cn "12"  "ui.label":12
+cn "12"  "ui.style":"fill-color: #00b5ad;"
+an "13"
+cn "13"  "xy":{22,16}
+cn "13"  "ui.class":"depot"
+cn "13"  "ui.label":13
+cn "13"  "ui.style":"fill-color: #21ba45;"
+ae "10-7" "10" > "7"
+ce "10-7"  "ui.style":"fill-color: #e03997;"
+ae "7-2" "7" > "2"
+ce "7-2"  "ui.style":"fill-color: #e03997;"
+ae "2-11" "2" > "11"
+ce "2-11"  "ui.style":"fill-color: #e03997;"
+ae "11-1" "11" > "1"
+ce "11-1"  "ui.style":"fill-color: #fbbd08;"
+ae "1-0" "1" > "0"
+ce "1-0"  "ui.style":"fill-color: #fbbd08;"
+ae "0-11" "0" > "11"
+ce "0-11"  "ui.style":"fill-color: #fbbd08;"
+ae "11-5" "11" > "5"
+ce "11-5"  "ui.style":"fill-color: #fbbd08;"
+ae "5-6" "5" > "6"
+ce "5-6"  "ui.style":"fill-color: #fbbd08;"
+ae "6-11" "6" > "11"
+ce "6-11"  "ui.style":"fill-color: #fbbd08;"
+ae "10-3" "10" > "3"
+ce "10-3"  "ui.style":"fill-color: #e03997;"
+ae "3-10" "3" > "10"
+ce "3-10"  "ui.style":"fill-color: #e03997;"
+ae "12-9" "12" > "9"
+ce "12-9"  "ui.style":"fill-color: #00b5ad;"
+ae "9-8" "9" > "8"
+ce "9-8"  "ui.style":"fill-color: #00b5ad;"
+ae "8-4" "8" > "4"
+ce "8-4"  "ui.style":"fill-color: #00b5ad;"
+ae "4-11" "4" > "11"
+ce "4-11"  "ui.style":"fill-color: #00b5ad;"

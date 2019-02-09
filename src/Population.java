@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Population {
 
@@ -52,7 +50,7 @@ public class Population {
     }
 
     public double bestFitness() {
-        Collections.sort(this.population, Collections.reverseOrder());
+        this.population.sort(Collections.reverseOrder());
         return this.population.get(0).fitness(false);
     }
 }

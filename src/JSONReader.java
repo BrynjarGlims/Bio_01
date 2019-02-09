@@ -1,6 +1,4 @@
 import org.json.*;
-import scala.xml.Null;
-
 import java.io.InputStream;
 
 public class JSONReader {

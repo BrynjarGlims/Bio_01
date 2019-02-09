@@ -1,7 +1,7 @@
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -71,15 +71,14 @@ public class GraphVisualization {
     }
 
     public void visualize(ProblemData data, Genome genome) {
-
-        // ArrayList<List<Integer>> customers, ArrayList<List<Integer>> depots, ArrayList<Route> genome
-
         ArrayList<List<Integer>> customers = data.getCustomerData();
         ArrayList<List<Integer>> depots = data.getDepotData();
 
+        // customers and depot nodes
         addArrayToGraph(customers, "customer");
         addArrayToGraph(depots, "depot");
 
+        // every route between nodes in the genome
         addRoutes(genome.getGenome());
 
         graph.display(false);
@@ -94,9 +93,27 @@ public class GraphVisualization {
         addArrayToGraph(depots, "depot");
 
         graph.display(false);
+    }
 
+    public static void loadSavedGraph(String path) {
+        Graph g = new MultiGraph("graph");
+        try {
+            g.read(path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        g.display(false);
+    }
+
+    public void saveGraph(String path) {
+        try {
+            graph.write(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
+        loadSavedGraph("data/graphs/p09.dgs");
     }
 }
