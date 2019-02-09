@@ -50,6 +50,10 @@ public class GeneticAlgorithm {
         }
         //SELECTION
         ArrayList<Genome> selected = Selection.stochasticUniversalSampling(this.population, 1);
+        //CROSSOVER
+        if (this.crossoverRate > 0) {
+            selected = crossover.generateNextGeneration(selected, crossoverRate);
+            }
         //MUTATION
         if (this.mutationRateSwapRoute > 0) {
             selected = mutator.mutatePopulationRoute(selected, this.mutationRateSwapRoute);
@@ -58,10 +62,6 @@ public class GeneticAlgorithm {
         if (this.mutationRateSwapGlobal > 0) {
             selected = mutator.mutatePopulationGlobal(selected, this.mutationRateSwapGlobal);
         }
-        //CROSSOVER
-        if (this.crossoverRate > 0) {
-            selected = crossover.generateNextGeneration(selected, crossoverRate);
-            }
 
         if (this.numElite > 0) {
             ArrayList<Integer> indices = new ArrayList<>();
@@ -118,7 +118,7 @@ public class GeneticAlgorithm {
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters);
-        Genome g = GA.run(true, true);
+        Genome g = GA.run(true, false);
         GraphVisualization graph = new GraphVisualization();
 
         System.out.println(g.fitness(false));

@@ -32,7 +32,7 @@ public class Selection {
             fitness_sum += genome.fitness(true) / total_fitness * n;
 
             while (fitness_sum > start + idx) {
-                Genome newGenome = new Genome(new ArrayList<>(genome.getGenome()));
+                Genome newGenome = new Genome(genome);
                 selected.add(newGenome);
                 idx++;
             }
@@ -129,7 +129,7 @@ public class Selection {
 
         selected.sort(Collections.reverseOrder());
 
-        if (ThreadLocalRandom.current().nextDouble() < 0.7) {
+        if (ThreadLocalRandom.current().nextDouble() < 0.6) {
             return selected.get(0);
         } else {
             return selected.get(ThreadLocalRandom.current().nextInt(0, size));
