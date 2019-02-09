@@ -61,6 +61,7 @@ public class Genome implements Comparable<Genome> {
     public void removeRoute(int index){
         genome.remove(index);
     }
+
     public int getNumNodes(){
         int sum = 0;
         for(Route r : genome){
@@ -103,7 +104,6 @@ public class Genome implements Comparable<Genome> {
         return getGenome().get(ThreadLocalRandom.current().nextInt(0, getGenome().size()));
     }
 
-
     public Route longestRoute(){
         double fitness = -1;
         Route longest = null;
@@ -115,11 +115,10 @@ public class Genome implements Comparable<Genome> {
         }
         return longest;
     }
+
     public int numRoutes(){
         return getGenome().size();
     }
-
-
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -128,6 +127,22 @@ public class Genome implements Comparable<Genome> {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public boolean isFeasible() {
+        boolean feasible = true;
+        for (Route r : this.getGenome()) {
+            if (!r.getFeasibility()) {
+                feasible = false;
+                break;
+            }
+        }
+
+        if (this.fitness(false) != this.distance()) {
+            feasible = false;
+        }
+
+        return feasible;
     }
 
     @Override

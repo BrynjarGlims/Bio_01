@@ -73,7 +73,7 @@ public class GraphVisualization {
 
         ids[0] = "d" + (nodes.get(0) - data.getNumCustomers() + 1);
         ids[nodes.size() - 1] = "d" + (nodes.get(nodes.size() - 1) - data.getNumCustomers() + 1);
-        System.out.println(ids[nodes.size() - 1]);
+
         for (int i = 1; i < nodes.size() - 1; i++) {
             ids[i] = "c" + (nodes.get(i) + 1);
         }
@@ -134,6 +134,6 @@ public class GraphVisualization {
     }
 
     public static void main(String[] args) {
-        loadSavedGraph("data/graphs/p09.dgs");
+        loadSavedGraph("data/graphs/p01.dgs");
     }
 }

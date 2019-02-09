@@ -1,13 +1,13 @@
 {
   "fileName": "p01",
-  "selection": "tournament",
+  "selection": "sus",
   "tournamentSize": 3,
-  "populationSize": 100,
+  "populationSize": 50,
   "numGenerations": 3000,
   "numElite": 1,
   "crossoverRate": 0.7,
-  "mutationRateSwapRoute": 0.05,
-  "mutationRateSwapGlobal": 0.05,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
   "earlyStopping": false,
   "saveHistory": false
 }

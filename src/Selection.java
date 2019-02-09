@@ -12,11 +12,10 @@ public class Selection {
      * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
-    public static ArrayList<Genome> stochasticUniversalSampling(Population population, double fraction) {
+    public static ArrayList<Genome> stochasticUniversalSampling(Population population) {
         ArrayList<Genome> genomes = population.getPopulation();
 
-        int population_size = genomes.size();
-        int n = (int) (population_size * fraction);
+        int n = genomes.size();
         double total_fitness = 0.0;
 
         for (Genome genome : genomes) {
@@ -48,11 +47,10 @@ public class Selection {
      * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
-    public static ArrayList<Genome> stochasticAcceptance(Population population, double fraction) {
+    public static ArrayList<Genome> stochasticAcceptance(Population population) {
         ArrayList<Genome> genomes = population.getPopulation();
 
-        int n = (int) (genomes.size() * fraction);
-        int popSize = genomes.size();
+        int n = genomes.size();
         double max_fitness = 0.0;
         ArrayList<Double> fitness_values = new ArrayList<>();
 
@@ -69,12 +67,12 @@ public class Selection {
 
         for (int i = 0; i < n; i++) {
             while (true) {
-                individual = (int) (popSize * ThreadLocalRandom.current().nextDouble());
+                individual = (int) (n * ThreadLocalRandom.current().nextDouble());
                 if (ThreadLocalRandom.current().nextDouble() < fitness_values.get(individual) / max_fitness) {
                     break;
                 }
             }
-            Genome newGenome = new Genome(genomes.get(individual % popSize));
+            Genome newGenome = new Genome(genomes.get(individual % n));
             selected.add(newGenome);
         }
 
