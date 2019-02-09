@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class ProblemData {
 
@@ -87,6 +88,48 @@ public class ProblemData {
     public ArrayList<List<Integer>> getDepotData() {
         return depotData;
     }
+
+
+    //only data e.g. "p01" for datapath, complete relative path for solutionPath
+    public void readSolutionFile(String dataPath, String solutionPath){
+        readFile(dataPath);
+
+        try {
+
+            Scanner br = new Scanner(new File(solutionPath));
+
+            /*FileInputStream fstream = new FileInputStream(solutionPath);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+            */
+            ArrayList<Route> routes = new ArrayList<>();
+            System.out.println("fitness: " + br.nextLine());
+            String str;
+            String[] data;
+            String[] customers;
+            while(br.hasNext()){
+                str = br.nextLine().trim();
+                data = str.split("\t");
+                customers = data[data.length-1].trim().split(" ");
+                ArrayList<Integer> route= new ArrayList<>();
+                route.add(Integer.parseInt(data[0]) + numCustomers - 1);
+                for (String customer : customers){
+                    route.add(Integer.parseInt(customer));
+                }
+                route.add(Integer.parseInt(data[4]) + numCustomers - 1);
+                routes.add(new Route(route, this));
+
+
+            }
+
+            GraphVisualization graph = new GraphVisualization();
+            graph.visualize(this, new Genome(routes));
+
+
+        }
+        catch (Exception e){
+            throw new IllegalStateException(e);}
+    }
+
 
 
 }
