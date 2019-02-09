@@ -21,6 +21,7 @@ public class Route {
         this.durationCap = original.getDurationCap();
         this.nodes = new ArrayList<>(original.getNodes());
         this.fitness = original.fitness;
+        this.feasibility = original.feasibility;
     }
 
     public ProblemData getData(){return data;}

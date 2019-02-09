@@ -42,9 +42,8 @@ public class GenomeGenerator {
             Route route = createRoute();
             nodes.add(route);
         }
-        Genome genome = new Genome(nodes);
 
-        return genome;
+        return new Genome(nodes);
 
     }
     private Route createRoute(){ //creates a route for a single vehicle, starting and ending at depot
@@ -76,8 +75,7 @@ public class GenomeGenerator {
             else {break;}
         }
         nodes.add(selectRandomEndDepot());
-        Route route = new Route(nodes, data);
-        return route;
+        return new Route(nodes, data);
     }
 
 

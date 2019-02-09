@@ -1,8 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Selection {
@@ -132,7 +129,7 @@ public class Selection {
 
         selected.sort(Collections.reverseOrder());
 
-        if (ThreadLocalRandom.current().nextDouble() < 0.8) {
+        if (ThreadLocalRandom.current().nextDouble() < 0.7) {
             return selected.get(0);
         } else {
             return selected.get(ThreadLocalRandom.current().nextInt(0, size));

@@ -16,9 +16,7 @@ public class Crossover {
             Genome g1 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
             Genome g2 = prevGen.remove(ThreadLocalRandom.current().nextInt(0, prevGen.size()));
             if (ThreadLocalRandom.current().nextDouble(0,1) < crossoverRate) {
-                for (Genome g : bestCostRouteCrossover(g1, g2)) {
-                    nextGen.add(g);
-                }
+                nextGen.addAll(bestCostRouteCrossover(g1, g2));
             }
             else{
                 nextGen.add(g1);
@@ -123,6 +121,7 @@ public class Crossover {
                 route = r;
             }
         }
+        assert route != null;
         genome.replaceNode(route, route.getNodes().size() - 1, endDepot);
     }
 
@@ -140,7 +139,7 @@ public class Crossover {
             while(iterator2.hasNext()){
                 Route r = iterator2.next();
                 for (int j = 1 ; j < r.getNodes().size() ; j++){
-                    double dist = 0;
+                    double dist;
                     if (r.hasCapacity(customer)) {
 
                         genome.insertNode(r, j, customer);
