@@ -95,12 +95,8 @@ public class ProblemData {
         readFile(dataPath);
 
         try {
-
             Scanner br = new Scanner(new File(solutionPath));
 
-            /*FileInputStream fstream = new FileInputStream(solutionPath);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-            */
             ArrayList<Route> routes = new ArrayList<>();
             System.out.println("fitness: " + br.nextLine());
             String str;
@@ -113,7 +109,7 @@ public class ProblemData {
                 ArrayList<Integer> route= new ArrayList<>();
                 route.add(Integer.parseInt(data[0]) + numCustomers - 1);
                 for (String customer : customers){
-                    route.add(Integer.parseInt(customer));
+                    route.add(Integer.parseInt(customer) - 1);
                 }
                 route.add(Integer.parseInt(data[4]) + numCustomers - 1);
                 routes.add(new Route(route, this));
@@ -121,8 +117,8 @@ public class ProblemData {
 
             }
 
-            GraphVisualization graph = new GraphVisualization();
-            graph.visualize(this, new Genome(routes));
+            GraphVisualization graph = new GraphVisualization(this);
+            graph.visualize(new Genome(routes));
 
 
         }

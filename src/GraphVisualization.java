@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class GraphVisualization {
 
     private Graph graph = new MultiGraph("Network");
-    private HashMap<Integer, String> color_map = new HashMap<>();
+    private HashMap<String, String> color_map = new HashMap<>();
+    private ProblemData data;
 
     private String[] COLORS = {
             "#E5198D", "#E9AE01", "#009C94", "#16AA39", "#1678C1", "#9627BA", "#F16301", "#CF1919",
@@ -17,7 +18,8 @@ public class GraphVisualization {
     }; // pink, yellow, teal, green, blue, purple, orange, red, olive, brown, violet
 
 
-    public GraphVisualization() {
+    public GraphVisualization(ProblemData data) {
+        this.data = data;
 
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 
@@ -29,19 +31,30 @@ public class GraphVisualization {
 
     private void addArrayToGraph(ArrayList<List<Integer>> array, String type) {
         for (List<Integer> element : array) {
-            int id = element.get(0) - 1;
+            int id = element.get(0);
             int x = element.get(1);
             int y = element.get(2);
 
-            Node node = graph.addNode(Integer.toString(id));
+            Node node;
+            String nodeId;
+
+            if (type.equals("depot")) {
+                id = id - data.getNumCustomers();
+                nodeId = "d" + (id);
+                node = graph.addNode(nodeId);
+            } else {
+                nodeId = "c" + id;
+                node = graph.addNode(nodeId);
+            }
+
             node.setAttribute("xy", x, y);
             node.addAttribute("ui.class", type);
             node.addAttribute("ui.label", id);
 
             if (type.equals("depot")) {
                 // set unique color for each depot. Keep the colors for corresponding routes
-                color_map.putIfAbsent(id, COLORS[color_map.size()]);
-                String color = color_map.get(id);
+                color_map.putIfAbsent(nodeId, COLORS[color_map.size()]);
+                String color = color_map.get(nodeId);
                 node.setAttribute("ui.style", String.format("fill-color: %s;", color));
             }
         }
@@ -56,21 +69,28 @@ public class GraphVisualization {
     private void addRoute(Route route) {
         List<Integer> nodes = route.getNodes();
 
-        int starting_depot = nodes.get(0);
+        String[] ids = new String[nodes.size()];
+
+        ids[0] = "d" + (nodes.get(0) - data.getNumCustomers() + 1);
+        ids[nodes.size() - 1] = "d" + (nodes.get(nodes.size() - 1) - data.getNumCustomers() + 1);
+        System.out.println(ids[nodes.size() - 1]);
+        for (int i = 1; i < nodes.size() - 1; i++) {
+            ids[i] = "c" + (nodes.get(i) + 1);
+        }
 
         // get color for starting depot from color map
-        String color = color_map.get(starting_depot);
+        String color = color_map.get(ids[0]);
 
         for (int i = 0; i < nodes.size() - 1; i++) {
-            int from = nodes.get(i);
-            int to = nodes.get(i+1);
+            String from = ids[i];
+            String to = ids[i+1];
             String edge_id = from + "-" + to;
             Edge edge = graph.addEdge(edge_id, from, to, true);
             edge.setAttribute("ui.style", String.format("fill-color: %s;", color));
         }
     }
 
-    public void visualize(ProblemData data, Genome genome) {
+    public void visualize(Genome genome) {
         ArrayList<List<Integer>> customers = data.getCustomerData();
         ArrayList<List<Integer>> depots = data.getDepotData();
 
@@ -85,7 +105,7 @@ public class GraphVisualization {
 
     }
 
-    public void visualize(ProblemData data) {
+    public void visualize() {
         ArrayList<List<Integer>> customers = data.getCustomerData();
         ArrayList<List<Integer>> depots = data.getDepotData();
 

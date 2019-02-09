@@ -114,25 +114,26 @@ public class GeneticAlgorithm {
         return population.getPopulation().get(0);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        /*JSONObject parameters = JSONReader.readJSONFile("parameters.json");
+        JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters);
         Genome g = GA.run(true, false);
-        GraphVisualization graph = new GraphVisualization();
+        GraphVisualization graph = new GraphVisualization(GA.data);
 
         System.out.println(g.fitness(false));
         System.out.println(g.distance());
-        graph.visualize(GA.data, g);
+        graph.visualize(g);
 
         //save graph to file
         graph.saveGraph("data/graphs/" + parameters.getString("fileName") + ".dgs");
 
         Writer.genomeWriter(g);
+        /*
+        ProblemData data = new ProblemData();
+        data.readSolutionFile("p01", "data/ourSolutions/P01.res");
         */
-         ProblemData data = new ProblemData();
-         data.readSolutionFile("p09", "data/ourSolutions/P09.res");
-         }
+    }
 }
 
 
