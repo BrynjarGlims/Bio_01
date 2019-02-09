@@ -92,7 +92,7 @@ public class ProblemData {
 
     //only data e.g. "p01" for datapath, complete relative path for solutionPath
     public void readSolutionFile(String dataPath, String solutionPath){
-        readFile("data/input/" + dataPath);
+        readFile(dataPath);
 
         try {
 
