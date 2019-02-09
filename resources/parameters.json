@@ -1,4 +1,5 @@
 {
+  "fileName": "p01",
   "populationSize": 50,
   "numGenerations": 3000,
   "numElite": 1,
@@ -6,5 +7,6 @@
   "mutationRateSwapRoute": 0.01,
   "mutationRateSwapGlobal": 0.01,
   "selectionRate": 1,
-  "fileName": "p01"
+  "earlyStopping": false,
+  "saveHistory": false
 }

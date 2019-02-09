@@ -16,6 +16,9 @@ public class GeneticAlgorithm {
     private double mutationRateSwapGlobal;
     private double selectionRate;
 
+    private boolean earlyStopping;
+    private boolean saveHistory;
+
     private double[] benchmarks = {590.,480.,670.,1060.,790.,920.,930.,4750.,4160.,3970.,3870.,1360.,1370.,1330.,2630.,2680.,2700.,3980.,4000.,4150.,5920.,6030.,6100.};
 
     private String fileName;
@@ -31,6 +34,9 @@ public class GeneticAlgorithm {
         this.mutationRateSwapRoute = parameters.getDouble("mutationRateSwapRoute");
         this.mutationRateSwapGlobal = parameters.getDouble("mutationRateSwapGlobal");
         this.selectionRate = parameters.getDouble("selectionRate");
+
+        this.earlyStopping = parameters.getBoolean("earlyStopping");
+        this.saveHistory = parameters.getBoolean("saveHistory");
 
         this.fileName = parameters.getString("fileName");
 
@@ -81,7 +87,7 @@ public class GeneticAlgorithm {
     }
 
 
-    public Genome run(boolean saveHistory, boolean earlyStop){
+    public Genome run(){
         ArrayList<Double> data = new ArrayList<>();
         double bestFitness;
         int benchmarkIndex = Integer.parseInt(this.fileName.substring(1)) - 1;
@@ -98,7 +104,7 @@ public class GeneticAlgorithm {
                 System.out.println(String.format("Generation %d, mean fitness %.2f, mean distance %.2f, best %.2f",
                         i, population.meanFitness(), population.meanDistance(), bestFitness));
 
-                if (earlyStop) {
+                if (earlyStopping) {
                     if (bestFitness < this.benchmarks[benchmarkIndex]) {
                         break;
                     }
@@ -118,7 +124,7 @@ public class GeneticAlgorithm {
 
         JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters);
-        Genome g = GA.run(true, false);
+        Genome g = GA.run();
         GraphVisualization graph = new GraphVisualization(GA.data);
 
         System.out.println(g.fitness(false));
