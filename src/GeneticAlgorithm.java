@@ -116,7 +116,7 @@ public class GeneticAlgorithm {
 
     public static void main(String[] args){
 
-        JSONObject parameters = JSONReader.readJSONFile("parameters.json");
+        /*JSONObject parameters = JSONReader.readJSONFile("parameters.json");
         GeneticAlgorithm GA = new GeneticAlgorithm(parameters);
         Genome g = GA.run(true, true);
         GraphVisualization graph = new GraphVisualization();
@@ -129,7 +129,10 @@ public class GeneticAlgorithm {
         graph.saveGraph("data/graphs/" + parameters.getString("fileName") + ".dgs");
 
         Writer.genomeWriter(g);
-    }
+        */
+         ProblemData data = new ProblemData();
+         data.readSolutionFile("p09", "data/ourSolutions/P09.res");
+         }
 }
 
 
