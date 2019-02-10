@@ -9,7 +9,6 @@ public class Selection {
      * A genome can be selected more than once, depending on the fraction to sample.
      * Each genome will be represented with the expected weight of their fitness.
      * @param population  a list of genomes to sample from
-     * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
     public static ArrayList<Genome> stochasticUniversalSampling(Population population) {
@@ -44,7 +43,6 @@ public class Selection {
      * This is a faster alternative to FPS with approximately equal probability distribution.
      * https://arxiv.org/pdf/1109.3627.pdf
      * @param population  a list of genomes to sample from
-     * @param fraction    fraction of the population to sample
      * @return            the sampled subset of the population
      */
     public static ArrayList<Genome> stochasticAcceptance(Population population) {

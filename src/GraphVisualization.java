@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GraphVisualization {
 
-    private Graph graph = new MultiGraph("Network");
+    private Graph graph = new MultiGraph("Route Network");
     private HashMap<String, String> color_map = new HashMap<>();
     private ProblemData data;
 
@@ -105,18 +105,8 @@ public class GraphVisualization {
 
     }
 
-    public void visualize() {
-        ArrayList<List<Integer>> customers = data.getCustomerData();
-        ArrayList<List<Integer>> depots = data.getDepotData();
-
-        addArrayToGraph(customers, "customer");
-        addArrayToGraph(depots, "depot");
-
-        graph.display(false);
-    }
-
     public static void loadSavedGraph(String path) {
-        Graph g = new MultiGraph("graph");
+        Graph g = new MultiGraph(path);
         try {
             g.read(path);
         } catch (Exception e) {
@@ -134,6 +124,9 @@ public class GraphVisualization {
     }
 
     public static void main(String[] args) {
-        loadSavedGraph("data/graphs/p01.dgs");
+        // loadSavedGraph("data/graphs/p12.dgs");
+
+        ProblemData data = new ProblemData();
+        data.readSolutionFile("p01", "data/solution/P01.res");
     }
 }
