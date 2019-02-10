@@ -1,0 +1,197 @@
+p11: 3880.30 benchmark 3875.025
+
+{
+  "fileName": "p11",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 12000,
+  "numElite": 2,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p12: benchmark 1369.9245
+{
+  "fileName": "p12",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p13: benchmark 1384.8975
+{
+  "fileName": "p13",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p14: benchmark 1349.9745
+{
+  "fileName": "p14",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p15 2408.79 benchmark 2637.516
+{
+  "fileName": "p15",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p16 2431.37 benchmark 2700.8415
+{
+  "fileName": "p16",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p17 2431.37 benchmark 2739.282
+
+{
+  "fileName": "p17",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p18 3719.86 benchmark 3985.779 (kan redusere generations, men hadde ikke så veldig god margin ved 3000 gen)
+{
+  "fileName": "p18",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 6000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p19 3636.62 benchmark 4031.328
+{
+  "fileName": "p19",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p20 3573.62 benchmark 4206.216
+{
+  "fileName": "p20",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p21 5841.25 benchmark 5922.924
+{
+  "fileName": "p21",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 6000,
+  "numElite": 2,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p22  5480.83 benchmark 6039.1485
+{
+  "fileName": "p22",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 2,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
+
+p23 5457,29 benchmark 6403.1205
+
+{
+  "fileName": "p23",
+  "selection": "sus",
+  "tournamentSize": 3,
+  "populationSize": 100,
+  "numGenerations": 1500,
+  "numElite": 2,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.03,
+  "mutationRateSwapGlobal": 0.03,
+  "earlyStopping": false,
+  "saveHistory": false
+}
