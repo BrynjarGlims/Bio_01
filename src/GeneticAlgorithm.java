@@ -63,8 +63,6 @@ public class GeneticAlgorithm {
         ArrayList<Genome> selected;
         if (this.selection.equals("sus")) {
             selected = Selection.stochasticUniversalSampling(this.population);
-        } else if (this.selection.equals("sa")) {
-            selected = Selection.stochasticAcceptance(this.population);
         } else {
             selected = Selection.tournamentSelection(this.population, this.tournamentSize);
         }

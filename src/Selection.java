@@ -13,67 +13,33 @@ public class Selection {
      */
     public static ArrayList<Genome> stochasticUniversalSampling(Population population) {
         ArrayList<Genome> genomes = population.getPopulation();
+        ArrayList<Genome> selected = new ArrayList<>();
 
         int n = genomes.size();
         double total_fitness = 0.0;
 
         for (Genome genome : genomes) {
+            // inverse fitness for cumulative sampling. Higher values are sampled more.
             total_fitness += genome.fitness(true);
         }
 
         double fitness_sum = 0.0;
+        // start pointer
         double start = ThreadLocalRandom.current().nextDouble();
-        ArrayList<Genome> selected = new ArrayList<>();
+
         int idx = 0;
 
         for (Genome genome : genomes) {
+            // calculate the fitness of the genome in relation to the total fitness
             fitness_sum += genome.fitness(true) / total_fitness * n;
 
+            //  create copies of the genome equal to the number of times it should be selected (E[x])
             while (fitness_sum > start + idx) {
                 Genome newGenome = new Genome(genome);
                 selected.add(newGenome);
                 idx++;
             }
         }
-        return selected;
-    }
-
-    /**
-     * Returns a sample of the population using Stochastic Acceptance.
-     * This is a faster alternative to FPS with approximately equal probability distribution.
-     * https://arxiv.org/pdf/1109.3627.pdf
-     * @param population  a list of genomes to sample from
-     * @return            the sampled subset of the population
-     */
-    public static ArrayList<Genome> stochasticAcceptance(Population population) {
-        ArrayList<Genome> genomes = population.getPopulation();
-
-        int n = genomes.size();
-        double max_fitness = 0.0;
-        ArrayList<Double> fitness_values = new ArrayList<>();
-
-        for (Genome genome : genomes) {
-            double fitness = genome.fitness(true);
-            fitness_values.add(fitness);
-            if (fitness > max_fitness) {
-                max_fitness = fitness;
-            }
-        }
-
-        ArrayList<Genome> selected = new ArrayList<>();
-        int individual;
-
-        for (int i = 0; i < n; i++) {
-            while (true) {
-                individual = (int) (n * ThreadLocalRandom.current().nextDouble());
-                if (ThreadLocalRandom.current().nextDouble() < fitness_values.get(individual) / max_fitness) {
-                    break;
-                }
-            }
-            Genome newGenome = new Genome(genomes.get(individual % n));
-            selected.add(newGenome);
-        }
-
         return selected;
     }
 

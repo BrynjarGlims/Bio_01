@@ -1,0 +1,631 @@
+DGS004
+null 0 0
+cg  "ui.quality":true
+cg  "ui.antialias":true
+cg  "ui.stylesheet":"url('style.css')"
+an "c1"
+cn "c1"  "ui.label":1
+cn "c1"  "xy":{41,49}
+cn "c1"  "ui.class":"customer"
+an "c2"
+cn "c2"  "ui.label":2
+cn "c2"  "xy":{35,17}
+cn "c2"  "ui.class":"customer"
+an "c3"
+cn "c3"  "ui.label":3
+cn "c3"  "xy":{55,45}
+cn "c3"  "ui.class":"customer"
+an "c4"
+cn "c4"  "ui.label":4
+cn "c4"  "xy":{55,20}
+cn "c4"  "ui.class":"customer"
+an "c5"
+cn "c5"  "ui.label":5
+cn "c5"  "xy":{15,30}
+cn "c5"  "ui.class":"customer"
+an "c6"
+cn "c6"  "ui.label":6
+cn "c6"  "xy":{25,30}
+cn "c6"  "ui.class":"customer"
+an "c7"
+cn "c7"  "ui.label":7
+cn "c7"  "xy":{20,50}
+cn "c7"  "ui.class":"customer"
+an "c8"
+cn "c8"  "ui.label":8
+cn "c8"  "xy":{10,43}
+cn "c8"  "ui.class":"customer"
+an "c9"
+cn "c9"  "ui.label":9
+cn "c9"  "xy":{55,60}
+cn "c9"  "ui.class":"customer"
+an "c10"
+cn "c10"  "ui.label":10
+cn "c10"  "xy":{30,60}
+cn "c10"  "ui.class":"customer"
+an "c11"
+cn "c11"  "ui.label":11
+cn "c11"  "xy":{20,65}
+cn "c11"  "ui.class":"customer"
+an "c12"
+cn "c12"  "ui.label":12
+cn "c12"  "xy":{50,35}
+cn "c12"  "ui.class":"customer"
+an "c13"
+cn "c13"  "ui.label":13
+cn "c13"  "xy":{30,25}
+cn "c13"  "ui.class":"customer"
+an "c14"
+cn "c14"  "ui.label":14
+cn "c14"  "xy":{15,10}
+cn "c14"  "ui.class":"customer"
+an "c15"
+cn "c15"  "ui.label":15
+cn "c15"  "xy":{30,5}
+cn "c15"  "ui.class":"customer"
+an "c16"
+cn "c16"  "ui.label":16
+cn "c16"  "xy":{10,20}
+cn "c16"  "ui.class":"customer"
+an "c17"
+cn "c17"  "ui.label":17
+cn "c17"  "xy":{5,30}
+cn "c17"  "ui.class":"customer"
+an "c18"
+cn "c18"  "ui.label":18
+cn "c18"  "xy":{20,40}
+cn "c18"  "ui.class":"customer"
+an "c19"
+cn "c19"  "ui.label":19
+cn "c19"  "xy":{15,60}
+cn "c19"  "ui.class":"customer"
+an "c20"
+cn "c20"  "ui.label":20
+cn "c20"  "xy":{45,65}
+cn "c20"  "ui.class":"customer"
+an "c21"
+cn "c21"  "ui.label":21
+cn "c21"  "xy":{45,20}
+cn "c21"  "ui.class":"customer"
+an "c22"
+cn "c22"  "ui.label":22
+cn "c22"  "xy":{45,10}
+cn "c22"  "ui.class":"customer"
+an "c23"
+cn "c23"  "ui.label":23
+cn "c23"  "xy":{55,5}
+cn "c23"  "ui.class":"customer"
+an "c24"
+cn "c24"  "ui.label":24
+cn "c24"  "xy":{65,35}
+cn "c24"  "ui.class":"customer"
+an "c25"
+cn "c25"  "ui.label":25
+cn "c25"  "xy":{65,20}
+cn "c25"  "ui.class":"customer"
+an "c26"
+cn "c26"  "ui.label":26
+cn "c26"  "xy":{45,30}
+cn "c26"  "ui.class":"customer"
+an "c27"
+cn "c27"  "ui.label":27
+cn "c27"  "xy":{35,40}
+cn "c27"  "ui.class":"customer"
+an "c28"
+cn "c28"  "ui.label":28
+cn "c28"  "xy":{41,37}
+cn "c28"  "ui.class":"customer"
+an "c29"
+cn "c29"  "ui.label":29
+cn "c29"  "xy":{64,42}
+cn "c29"  "ui.class":"customer"
+an "c30"
+cn "c30"  "ui.label":30
+cn "c30"  "xy":{40,60}
+cn "c30"  "ui.class":"customer"
+an "c31"
+cn "c31"  "ui.label":31
+cn "c31"  "xy":{31,52}
+cn "c31"  "ui.class":"customer"
+an "c32"
+cn "c32"  "ui.label":32
+cn "c32"  "xy":{35,69}
+cn "c32"  "ui.class":"customer"
+an "c33"
+cn "c33"  "ui.label":33
+cn "c33"  "xy":{53,52}
+cn "c33"  "ui.class":"customer"
+an "c34"
+cn "c34"  "ui.label":34
+cn "c34"  "xy":{65,55}
+cn "c34"  "ui.class":"customer"
+an "c35"
+cn "c35"  "ui.label":35
+cn "c35"  "xy":{63,65}
+cn "c35"  "ui.class":"customer"
+an "c36"
+cn "c36"  "ui.label":36
+cn "c36"  "xy":{2,60}
+cn "c36"  "ui.class":"customer"
+an "c37"
+cn "c37"  "ui.label":37
+cn "c37"  "xy":{20,20}
+cn "c37"  "ui.class":"customer"
+an "c38"
+cn "c38"  "ui.label":38
+cn "c38"  "xy":{5,5}
+cn "c38"  "ui.class":"customer"
+an "c39"
+cn "c39"  "ui.label":39
+cn "c39"  "xy":{60,12}
+cn "c39"  "ui.class":"customer"
+an "c40"
+cn "c40"  "ui.label":40
+cn "c40"  "xy":{40,25}
+cn "c40"  "ui.class":"customer"
+an "c41"
+cn "c41"  "ui.label":41
+cn "c41"  "xy":{42,7}
+cn "c41"  "ui.class":"customer"
+an "c42"
+cn "c42"  "ui.label":42
+cn "c42"  "xy":{24,12}
+cn "c42"  "ui.class":"customer"
+an "c43"
+cn "c43"  "ui.label":43
+cn "c43"  "xy":{23,3}
+cn "c43"  "ui.class":"customer"
+an "c44"
+cn "c44"  "ui.label":44
+cn "c44"  "xy":{11,14}
+cn "c44"  "ui.class":"customer"
+an "c45"
+cn "c45"  "ui.label":45
+cn "c45"  "xy":{6,38}
+cn "c45"  "ui.class":"customer"
+an "c46"
+cn "c46"  "ui.label":46
+cn "c46"  "xy":{2,48}
+cn "c46"  "ui.class":"customer"
+an "c47"
+cn "c47"  "ui.label":47
+cn "c47"  "xy":{8,56}
+cn "c47"  "ui.class":"customer"
+an "c48"
+cn "c48"  "ui.label":48
+cn "c48"  "xy":{13,52}
+cn "c48"  "ui.class":"customer"
+an "c49"
+cn "c49"  "ui.label":49
+cn "c49"  "xy":{6,68}
+cn "c49"  "ui.class":"customer"
+an "c50"
+cn "c50"  "ui.label":50
+cn "c50"  "xy":{47,47}
+cn "c50"  "ui.class":"customer"
+an "c51"
+cn "c51"  "ui.label":51
+cn "c51"  "xy":{49,58}
+cn "c51"  "ui.class":"customer"
+an "c52"
+cn "c52"  "ui.label":52
+cn "c52"  "xy":{27,43}
+cn "c52"  "ui.class":"customer"
+an "c53"
+cn "c53"  "ui.label":53
+cn "c53"  "xy":{37,31}
+cn "c53"  "ui.class":"customer"
+an "c54"
+cn "c54"  "ui.label":54
+cn "c54"  "xy":{57,29}
+cn "c54"  "ui.class":"customer"
+an "c55"
+cn "c55"  "ui.label":55
+cn "c55"  "xy":{63,23}
+cn "c55"  "ui.class":"customer"
+an "c56"
+cn "c56"  "ui.label":56
+cn "c56"  "xy":{53,12}
+cn "c56"  "ui.class":"customer"
+an "c57"
+cn "c57"  "ui.label":57
+cn "c57"  "xy":{32,12}
+cn "c57"  "ui.class":"customer"
+an "c58"
+cn "c58"  "ui.label":58
+cn "c58"  "xy":{36,26}
+cn "c58"  "ui.class":"customer"
+an "c59"
+cn "c59"  "ui.label":59
+cn "c59"  "xy":{21,24}
+cn "c59"  "ui.class":"customer"
+an "c60"
+cn "c60"  "ui.label":60
+cn "c60"  "xy":{17,34}
+cn "c60"  "ui.class":"customer"
+an "c61"
+cn "c61"  "ui.label":61
+cn "c61"  "xy":{12,24}
+cn "c61"  "ui.class":"customer"
+an "c62"
+cn "c62"  "ui.label":62
+cn "c62"  "xy":{24,58}
+cn "c62"  "ui.class":"customer"
+an "c63"
+cn "c63"  "ui.label":63
+cn "c63"  "xy":{27,69}
+cn "c63"  "ui.class":"customer"
+an "c64"
+cn "c64"  "ui.label":64
+cn "c64"  "xy":{15,77}
+cn "c64"  "ui.class":"customer"
+an "c65"
+cn "c65"  "ui.label":65
+cn "c65"  "xy":{62,77}
+cn "c65"  "ui.class":"customer"
+an "c66"
+cn "c66"  "ui.label":66
+cn "c66"  "xy":{49,73}
+cn "c66"  "ui.class":"customer"
+an "c67"
+cn "c67"  "ui.label":67
+cn "c67"  "xy":{67,5}
+cn "c67"  "ui.class":"customer"
+an "c68"
+cn "c68"  "ui.label":68
+cn "c68"  "xy":{56,39}
+cn "c68"  "ui.class":"customer"
+an "c69"
+cn "c69"  "ui.label":69
+cn "c69"  "xy":{37,47}
+cn "c69"  "ui.class":"customer"
+an "c70"
+cn "c70"  "ui.label":70
+cn "c70"  "xy":{37,56}
+cn "c70"  "ui.class":"customer"
+an "c71"
+cn "c71"  "ui.label":71
+cn "c71"  "xy":{57,68}
+cn "c71"  "ui.class":"customer"
+an "c72"
+cn "c72"  "ui.label":72
+cn "c72"  "xy":{47,16}
+cn "c72"  "ui.class":"customer"
+an "c73"
+cn "c73"  "ui.label":73
+cn "c73"  "xy":{44,17}
+cn "c73"  "ui.class":"customer"
+an "c74"
+cn "c74"  "ui.label":74
+cn "c74"  "xy":{46,13}
+cn "c74"  "ui.class":"customer"
+an "c75"
+cn "c75"  "ui.label":75
+cn "c75"  "xy":{49,11}
+cn "c75"  "ui.class":"customer"
+an "c76"
+cn "c76"  "ui.label":76
+cn "c76"  "xy":{49,42}
+cn "c76"  "ui.class":"customer"
+an "c77"
+cn "c77"  "ui.label":77
+cn "c77"  "xy":{53,43}
+cn "c77"  "ui.class":"customer"
+an "c78"
+cn "c78"  "ui.label":78
+cn "c78"  "xy":{61,52}
+cn "c78"  "ui.class":"customer"
+an "c79"
+cn "c79"  "ui.label":79
+cn "c79"  "xy":{57,48}
+cn "c79"  "ui.class":"customer"
+an "c80"
+cn "c80"  "ui.label":80
+cn "c80"  "xy":{56,37}
+cn "c80"  "ui.class":"customer"
+an "c81"
+cn "c81"  "ui.label":81
+cn "c81"  "xy":{55,54}
+cn "c81"  "ui.class":"customer"
+an "c82"
+cn "c82"  "ui.label":82
+cn "c82"  "xy":{15,47}
+cn "c82"  "ui.class":"customer"
+an "c83"
+cn "c83"  "ui.label":83
+cn "c83"  "xy":{14,37}
+cn "c83"  "ui.class":"customer"
+an "c84"
+cn "c84"  "ui.label":84
+cn "c84"  "xy":{11,31}
+cn "c84"  "ui.class":"customer"
+an "c85"
+cn "c85"  "ui.label":85
+cn "c85"  "xy":{16,22}
+cn "c85"  "ui.class":"customer"
+an "c86"
+cn "c86"  "ui.label":86
+cn "c86"  "xy":{4,18}
+cn "c86"  "ui.class":"customer"
+an "c87"
+cn "c87"  "ui.label":87
+cn "c87"  "xy":{28,18}
+cn "c87"  "ui.class":"customer"
+an "c88"
+cn "c88"  "ui.label":88
+cn "c88"  "xy":{26,52}
+cn "c88"  "ui.class":"customer"
+an "c89"
+cn "c89"  "ui.label":89
+cn "c89"  "xy":{26,35}
+cn "c89"  "ui.class":"customer"
+an "c90"
+cn "c90"  "ui.label":90
+cn "c90"  "xy":{31,67}
+cn "c90"  "ui.class":"customer"
+an "c91"
+cn "c91"  "ui.label":91
+cn "c91"  "xy":{15,19}
+cn "c91"  "ui.class":"customer"
+an "c92"
+cn "c92"  "ui.label":92
+cn "c92"  "xy":{22,22}
+cn "c92"  "ui.class":"customer"
+an "c93"
+cn "c93"  "ui.label":93
+cn "c93"  "xy":{18,24}
+cn "c93"  "ui.class":"customer"
+an "c94"
+cn "c94"  "ui.label":94
+cn "c94"  "xy":{26,27}
+cn "c94"  "ui.class":"customer"
+an "c95"
+cn "c95"  "ui.label":95
+cn "c95"  "xy":{25,24}
+cn "c95"  "ui.class":"customer"
+an "c96"
+cn "c96"  "ui.label":96
+cn "c96"  "xy":{22,27}
+cn "c96"  "ui.class":"customer"
+an "c97"
+cn "c97"  "ui.label":97
+cn "c97"  "xy":{25,21}
+cn "c97"  "ui.class":"customer"
+an "c98"
+cn "c98"  "ui.label":98
+cn "c98"  "xy":{19,21}
+cn "c98"  "ui.class":"customer"
+an "c99"
+cn "c99"  "ui.label":99
+cn "c99"  "xy":{20,26}
+cn "c99"  "ui.class":"customer"
+an "c100"
+cn "c100"  "ui.label":100
+cn "c100"  "xy":{18,18}
+cn "c100"  "ui.class":"customer"
+an "d1"
+cn "d1"  "xy":{15,35}
+cn "d1"  "ui.class":"depot"
+cn "d1"  "ui.label":1
+cn "d1"  "ui.style":"fill-color: #E5198D;"
+an "d2"
+cn "d2"  "xy":{55,35}
+cn "d2"  "ui.class":"depot"
+cn "d2"  "ui.label":2
+cn "d2"  "ui.style":"fill-color: #E9AE01;"
+ae "d1-c5" "d1" > "c5"
+ce "d1-c5"  "ui.style":"fill-color: #E5198D;"
+ae "c5-c93" "c5" > "c93"
+ce "c5-c93"  "ui.style":"fill-color: #E5198D;"
+ae "c93-c85" "c93" > "c85"
+ce "c93-c85"  "ui.style":"fill-color: #E5198D;"
+ae "c85-c91" "c85" > "c91"
+ce "c85-c91"  "ui.style":"fill-color: #E5198D;"
+ae "c91-c100" "c91" > "c100"
+ce "c91-c100"  "ui.style":"fill-color: #E5198D;"
+ae "c100-c98" "c100" > "c98"
+ce "c100-c98"  "ui.style":"fill-color: #E5198D;"
+ae "c98-c37" "c98" > "c37"
+ce "c98-c37"  "ui.style":"fill-color: #E5198D;"
+ae "c37-c92" "c37" > "c92"
+ce "c37-c92"  "ui.style":"fill-color: #E5198D;"
+ae "c92-c59" "c92" > "c59"
+ce "c92-c59"  "ui.style":"fill-color: #E5198D;"
+ae "c59-c99" "c59" > "c99"
+ce "c59-c99"  "ui.style":"fill-color: #E5198D;"
+ae "c99-c96" "c99" > "c96"
+ce "c99-c96"  "ui.style":"fill-color: #E5198D;"
+ae "c96-d1" "c96" > "d1"
+ce "c96-d1"  "ui.style":"fill-color: #E5198D;"
+ae "d2-c3" "d2" > "c3"
+ce "d2-c3"  "ui.style":"fill-color: #E9AE01;"
+ae "c3-c79" "c3" > "c79"
+ce "c3-c79"  "ui.style":"fill-color: #E9AE01;"
+ae "c79-c33" "c79" > "c33"
+ce "c79-c33"  "ui.style":"fill-color: #E9AE01;"
+ae "c33-c81" "c33" > "c81"
+ce "c33-c81"  "ui.style":"fill-color: #E9AE01;"
+ae "c81-c9" "c81" > "c9"
+ce "c81-c9"  "ui.style":"fill-color: #E9AE01;"
+ae "c9-c51" "c9" > "c51"
+ce "c9-c51"  "ui.style":"fill-color: #E9AE01;"
+ae "c51-c32" "c51" > "c32"
+ce "c51-c32"  "ui.style":"fill-color: #E9AE01;"
+ae "c32-c90" "c32" > "c90"
+ce "c32-c90"  "ui.style":"fill-color: #E9AE01;"
+ae "c90-c63" "c90" > "c63"
+ce "c90-c63"  "ui.style":"fill-color: #E9AE01;"
+ae "c63-c10" "c63" > "c10"
+ce "c63-c10"  "ui.style":"fill-color: #E9AE01;"
+ae "c10-c62" "c10" > "c62"
+ce "c10-c62"  "ui.style":"fill-color: #E9AE01;"
+ae "c62-c88" "c62" > "c88"
+ce "c62-c88"  "ui.style":"fill-color: #E9AE01;"
+ae "c88-c7" "c88" > "c7"
+ce "c88-c7"  "ui.style":"fill-color: #E9AE01;"
+ae "c7-c18" "c7" > "c18"
+ce "c7-c18"  "ui.style":"fill-color: #E9AE01;"
+ae "c18-d1" "c18" > "d1"
+ce "c18-d1"  "ui.style":"fill-color: #E9AE01;"
+ae "d1-c60" "d1" > "c60"
+ce "d1-c60"  "ui.style":"fill-color: #E5198D;"
+ae "c60-c6" "c60" > "c6"
+ce "c60-c6"  "ui.style":"fill-color: #E5198D;"
+ae "c6-c94" "c6" > "c94"
+ce "c6-c94"  "ui.style":"fill-color: #E5198D;"
+ae "c94-c95" "c94" > "c95"
+ce "c94-c95"  "ui.style":"fill-color: #E5198D;"
+ae "c95-c97" "c95" > "c97"
+ce "c95-c97"  "ui.style":"fill-color: #E5198D;"
+ae "c97-c87" "c97" > "c87"
+ce "c97-c87"  "ui.style":"fill-color: #E5198D;"
+ae "c87-c13" "c87" > "c13"
+ce "c87-c13"  "ui.style":"fill-color: #E5198D;"
+ae "c13-c58" "c13" > "c58"
+ce "c13-c58"  "ui.style":"fill-color: #E5198D;"
+ae "c58-c53" "c58" > "c53"
+ce "c58-c53"  "ui.style":"fill-color: #E5198D;"
+ae "c53-c40" "c53" > "c40"
+ce "c53-c40"  "ui.style":"fill-color: #E5198D;"
+ae "c40-c26" "c40" > "c26"
+ce "c40-c26"  "ui.style":"fill-color: #E5198D;"
+ae "c26-c12" "c26" > "c12"
+ce "c26-c12"  "ui.style":"fill-color: #E5198D;"
+ae "c12-d2" "c12" > "d2"
+ce "c12-d2"  "ui.style":"fill-color: #E5198D;"
+ae "d2-c24" "d2" > "c24"
+ce "d2-c24"  "ui.style":"fill-color: #E9AE01;"
+ae "c24-c29" "c24" > "c29"
+ce "c24-c29"  "ui.style":"fill-color: #E9AE01;"
+ae "c29-c78" "c29" > "c78"
+ce "c29-c78"  "ui.style":"fill-color: #E9AE01;"
+ae "c78-c34" "c78" > "c34"
+ce "c78-c34"  "ui.style":"fill-color: #E9AE01;"
+ae "c34-c35" "c34" > "c35"
+ce "c34-c35"  "ui.style":"fill-color: #E9AE01;"
+ae "c35-c71" "c35" > "c71"
+ce "c35-c71"  "ui.style":"fill-color: #E9AE01;"
+ae "c71-c65" "c71" > "c65"
+ce "c71-c65"  "ui.style":"fill-color: #E9AE01;"
+ae "c65-c66" "c65" > "c66"
+ce "c65-c66"  "ui.style":"fill-color: #E9AE01;"
+ae "c66-c20" "c66" > "c20"
+ce "c66-c20"  "ui.style":"fill-color: #E9AE01;"
+ae "c20-c30" "c20" > "c30"
+ce "c20-c30"  "ui.style":"fill-color: #E9AE01;"
+ae "c30-c70" "c30" > "c70"
+ce "c30-c70"  "ui.style":"fill-color: #E9AE01;"
+ae "c70-c31" "c70" > "c31"
+ce "c70-c31"  "ui.style":"fill-color: #E9AE01;"
+ae "c31-c69" "c31" > "c69"
+ce "c31-c69"  "ui.style":"fill-color: #E9AE01;"
+ae "c69-c1" "c69" > "c1"
+ce "c69-c1"  "ui.style":"fill-color: #E9AE01;"
+ae "c1-c50" "c1" > "c50"
+ce "c1-c50"  "ui.style":"fill-color: #E9AE01;"
+ae "c50-d2" "c50" > "d2"
+ce "c50-d2"  "ui.style":"fill-color: #E9AE01;"
+ae "d1-c61" "d1" > "c61"
+ce "d1-c61"  "ui.style":"fill-color: #E5198D;"
+ae "c61-c16" "c61" > "c16"
+ce "c61-c16"  "ui.style":"fill-color: #E5198D;"
+ae "c16-c86" "c16" > "c86"
+ce "c16-c86"  "ui.style":"fill-color: #E5198D;"
+ae "c86-c38" "c86" > "c38"
+ce "c86-c38"  "ui.style":"fill-color: #E5198D;"
+ae "c38-c44" "c38" > "c44"
+ce "c38-c44"  "ui.style":"fill-color: #E5198D;"
+ae "c44-c14" "c44" > "c14"
+ce "c44-c14"  "ui.style":"fill-color: #E5198D;"
+ae "c14-c42" "c14" > "c42"
+ce "c14-c42"  "ui.style":"fill-color: #E5198D;"
+ae "c42-c43" "c42" > "c43"
+ce "c42-c43"  "ui.style":"fill-color: #E5198D;"
+ae "c43-c15" "c43" > "c15"
+ce "c43-c15"  "ui.style":"fill-color: #E5198D;"
+ae "c15-c57" "c15" > "c57"
+ce "c15-c57"  "ui.style":"fill-color: #E5198D;"
+ae "c57-c2" "c57" > "c2"
+ce "c57-c2"  "ui.style":"fill-color: #E5198D;"
+ae "c2-c41" "c2" > "c41"
+ce "c2-c41"  "ui.style":"fill-color: #E5198D;"
+ae "c41-c22" "c41" > "c22"
+ce "c41-c22"  "ui.style":"fill-color: #E5198D;"
+ae "c22-c73" "c22" > "c73"
+ce "c22-c73"  "ui.style":"fill-color: #E5198D;"
+ae "c73-c21" "c73" > "c21"
+ce "c73-c21"  "ui.style":"fill-color: #E5198D;"
+ae "c21-d2" "c21" > "d2"
+ce "c21-d2"  "ui.style":"fill-color: #E5198D;"
+ae "d1-c84" "d1" > "c84"
+ce "d1-c84"  "ui.style":"fill-color: #E5198D;"
+ae "c84-c17" "c84" > "c17"
+ce "c84-c17"  "ui.style":"fill-color: #E5198D;"
+ae "c17-c45" "c17" > "c45"
+ce "c17-c45"  "ui.style":"fill-color: #E5198D;"
+ae "c45-c46" "c45" > "c46"
+ce "c45-c46"  "ui.style":"fill-color: #E5198D;"
+ae "c46-c47" "c46" > "c47"
+ce "c46-c47"  "ui.style":"fill-color: #E5198D;"
+ae "c47-c36" "c47" > "c36"
+ce "c47-c36"  "ui.style":"fill-color: #E5198D;"
+ae "c36-c49" "c36" > "c49"
+ce "c36-c49"  "ui.style":"fill-color: #E5198D;"
+ae "c49-c64" "c49" > "c64"
+ce "c49-c64"  "ui.style":"fill-color: #E5198D;"
+ae "c64-c11" "c64" > "c11"
+ce "c64-c11"  "ui.style":"fill-color: #E5198D;"
+ae "c11-c19" "c11" > "c19"
+ce "c11-c19"  "ui.style":"fill-color: #E5198D;"
+ae "c19-c48" "c19" > "c48"
+ce "c19-c48"  "ui.style":"fill-color: #E5198D;"
+ae "c48-c82" "c48" > "c82"
+ce "c48-c82"  "ui.style":"fill-color: #E5198D;"
+ae "c82-c8" "c82" > "c8"
+ce "c82-c8"  "ui.style":"fill-color: #E5198D;"
+ae "c8-c83" "c8" > "c83"
+ce "c8-c83"  "ui.style":"fill-color: #E5198D;"
+ae "c83-d1" "c83" > "d1"
+ce "c83-d1"  "ui.style":"fill-color: #E5198D;"
+ae "d1-c89" "d1" > "c89"
+ce "d1-c89"  "ui.style":"fill-color: #E5198D;"
+ae "c89-c52" "c89" > "c52"
+ce "c89-c52"  "ui.style":"fill-color: #E5198D;"
+ae "c52-c27" "c52" > "c27"
+ce "c52-c27"  "ui.style":"fill-color: #E5198D;"
+ae "c27-c28" "c27" > "c28"
+ce "c27-c28"  "ui.style":"fill-color: #E5198D;"
+ae "c28-c76" "c28" > "c76"
+ce "c28-c76"  "ui.style":"fill-color: #E5198D;"
+ae "c76-c77" "c76" > "c77"
+ce "c76-c77"  "ui.style":"fill-color: #E5198D;"
+ae "c77-c68" "c77" > "c68"
+ce "c77-c68"  "ui.style":"fill-color: #E5198D;"
+ae "c68-c80" "c68" > "c80"
+ce "c68-c80"  "ui.style":"fill-color: #E5198D;"
+ae "c80-d2" "c80" > "d2"
+ce "c80-d2"  "ui.style":"fill-color: #E5198D;"
+ae "d2-c4" "d2" > "c4"
+ce "d2-c4"  "ui.style":"fill-color: #E9AE01;"
+ae "c4-c72" "c4" > "c72"
+ce "c4-c72"  "ui.style":"fill-color: #E9AE01;"
+ae "c72-c74" "c72" > "c74"
+ce "c72-c74"  "ui.style":"fill-color: #E9AE01;"
+ae "c74-c75" "c74" > "c75"
+ce "c74-c75"  "ui.style":"fill-color: #E9AE01;"
+ae "c75-c56" "c75" > "c56"
+ce "c75-c56"  "ui.style":"fill-color: #E9AE01;"
+ae "c56-c23" "c56" > "c23"
+ce "c56-c23"  "ui.style":"fill-color: #E9AE01;"
+ae "c23-c67" "c23" > "c67"
+ce "c23-c67"  "ui.style":"fill-color: #E9AE01;"
+ae "c67-c39" "c67" > "c39"
+ce "c67-c39"  "ui.style":"fill-color: #E9AE01;"
+ae "c39-c25" "c39" > "c25"
+ce "c39-c25"  "ui.style":"fill-color: #E9AE01;"
+ae "c25-c55" "c25" > "c55"
+ce "c25-c55"  "ui.style":"fill-color: #E9AE01;"
+ae "c55-c54" "c55" > "c54"
+ce "c55-c54"  "ui.style":"fill-color: #E9AE01;"
+ae "c54-d2" "c54" > "d2"
+ce "c54-d2"  "ui.style":"fill-color: #E9AE01;"
