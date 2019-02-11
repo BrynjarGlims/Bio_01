@@ -5,9 +5,8 @@
   "populationSize": 100,
   "numGenerations": 12000,
   "numElite": 2,
-  "crossoverRate": 0.7,
   "mutationRateSwapRoute": 0.03,
   "mutationRateSwapGlobal": 0.03,
   "earlyStopping": false,
-  "saveHistory": false
+  "saveHistory": true
 }

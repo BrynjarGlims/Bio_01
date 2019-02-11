@@ -1,0 +1,47 @@
+{
+  "fileName": "p01",
+  "selection": "sus",
+  "tournamentSize": 2,
+  "populationSize": 50,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.05,
+  "mutationRateSwapGlobal": 0.05,
+  "earlyStopping": false,
+  "saveHistory": true
+}
+
+p2 - p3 --> p1
+
+{
+  "fileName": "p04",
+  "selection": "sus",
+  "tournamentSize": 2,
+  "populationSize": 100,
+  "numGenerations": 3000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.01,
+  "mutationRateSwapGlobal": 0.01,
+  "earlyStopping": false,
+  "saveHistory": true
+}
+
+p5 - p6 - p7 --> p4
+
+p8 - p9 --> p10
+
+{
+  "fileName": "p10",
+  "selection": "sus",
+  "tournamentSize": 2,
+  "populationSize": 200,
+  "numGenerations": 5000,
+  "numElite": 1,
+  "crossoverRate": 0.7,
+  "mutationRateSwapRoute": 0.1,
+  "mutationRateSwapGlobal": 0.1,
+  "earlyStopping": true,
+  "saveHistory": true
+}
